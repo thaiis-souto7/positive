@@ -40,7 +40,12 @@ function Perguntas() {
 
   const handleCreate = () => {
 
-    axios.post("http://localhost:8080/api/perguntas", formData)
+    const dataToSend = {
+      ...formData,
+      status: formData.status ==! '' ? true : false
+      };
+
+    axios.post("http://localhost:8080/api/perguntas", dataToSend)
       .then((response) => {
         setPerguntas([...perguntas, response.data]);
         showSucess("Pergunta criada com sucesso!");

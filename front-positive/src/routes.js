@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-//import Dashboard from "views/Dashboard.js";
+import Dashboard from "views/Dashboard.js";
 import UserProfile from "views/UserProfile.js";
 import Filial from "views/Filial.js";
 import Perguntas from "views/Perguntas.js";
@@ -36,10 +36,24 @@ const dashboardRoutes = [
   //   layout: "/admin"
   // },
   {
+    path: "/dashboard",
+    name: "Dashboard",
+    icon: "nc-icon nc-chart-pie-35",
+    component: Dashboard,
+    layout: "/admin"
+  },
+  {
     path: "/api/funcionarios",
     name: "Perfil",
     icon: "nc-icon nc-circle-09",
     component: UserProfile,
+    layout: "/admin"
+  },
+  {
+    path: "/pergunta",
+    name: "Perguntas",
+    icon: "nc-icon nc-chat-round",
+    component: Perguntas,
     layout: "/admin"
   },
   {
@@ -56,20 +70,6 @@ const dashboardRoutes = [
     component: Filial,
     layout: "/admin"
   },
-  {
-    path: "/pergunta",
-    name: "Perguntas",
-    icon: "nc-icon nc-chat-round",
-    component: Perguntas,
-    layout: "/admin"
-  },
-  // {
-  //   path: "/dashboard",
-  //   name: "Dashboard",
-  //   icon: "nc-icon nc-chart-pie-35",
-  //   component: Dashboard,
-  //   layout: "/admin"
-  // },
   {
     path: "/relatorio",
     name: "Relatórios",
