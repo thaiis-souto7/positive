@@ -1,5 +1,4 @@
 export declare class AtualizarFilialDto {
-    matriz: boolean;
     nome: string;
     cep: string;
     rua: string;
@@ -11,5 +10,4 @@ export declare class AtualizarFilialDto {
     email: string;
     responsavel: string;
     numFunc: number;
-    fatAnual: number;
 }

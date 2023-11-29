@@ -14,15 +14,9 @@ const class_validator_1 = require("class-validator");
 class CriarFilialDto {
 }
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CriarFilialDto.prototype, "cnpj", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsBoolean)(),
-    __metadata("design:type", Boolean)
-], CriarFilialDto.prototype, "matriz", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
@@ -82,9 +76,5 @@ __decorate([
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CriarFilialDto.prototype, "numFunc", void 0);
-__decorate([
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
-], CriarFilialDto.prototype, "fatAnual", void 0);
 exports.CriarFilialDto = CriarFilialDto;
 //# sourceMappingURL=criar-filial.dto.js.map

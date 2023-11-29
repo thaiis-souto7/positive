@@ -2,8 +2,8 @@ import * as mongoose from 'mongoose';
 
 export const FilialSchema = new mongoose.Schema({
 
-    cnpj: { type: String, required: true, unique: true },
-    matriz: { type: Boolean, required: true },
+    cnpj: { type: String, unique: true },
+    //matriz: { type: Boolean },
     nome: { type: String, required: true },
     
     cep: { type: String, required: true },
@@ -18,7 +18,7 @@ export const FilialSchema = new mongoose.Schema({
     responsavel: { type: mongoose.Schema.Types.ObjectId, ref: 'Funcionario', required: true },
     segmento: { type: String, required: true },
     numFunc: { type: Number },
-    fatAnual: { type: Number },
+    //fatAnual: { type: Number },
     status: { type: Boolean, required: true, default: true },
 
 }, { timestamps: true, collection: 'filiais' });
