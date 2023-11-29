@@ -104,8 +104,8 @@ function UserProfile() {
     const dataToSend = {
       ...formData,
       idade: parseInt(formData.idade, 10),  // Converte para número
-      // cargaHoraria: parseInt(formData.cargaHoraria, 10),
-      // nivelAcesso: parseInt(formData.nivelAcesso, 10),
+      cargaHoraria: parseInt(formData.cargaHoraria, 10),
+      nivelAcesso: parseInt(formData.nivelAcesso, 10),
       dataAdmissao: formatDateForInput(formData.dataAdmissao, 'edit')
       };
 

@@ -2,8 +2,8 @@ import { IsBoolean, IsEmail, IsNotEmpty, IsNumber, IsString } from "class-valida
 
 export class AtualizarFilialDto{
 
-    @IsBoolean()
-    matriz: boolean;
+    // @IsBoolean()
+    // matriz: boolean;
 
     @IsString()
     nome: string;
@@ -38,6 +38,6 @@ export class AtualizarFilialDto{
     @IsNumber()
     numFunc: number;
 
-    @IsNumber()
-    fatAnual: number;
+    // @IsNumber()
+    // fatAnual: number;
 }

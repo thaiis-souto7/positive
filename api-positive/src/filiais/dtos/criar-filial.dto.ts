@@ -2,11 +2,11 @@ import { IsBoolean, IsEmail, IsNotEmpty, IsNumber, IsString } from "class-valida
 
 export class CriarFilialDto{
     
-    @IsNotEmpty() @IsString()
+    @IsString()
     readonly cnpj: string;
 
-    @IsNotEmpty() @IsBoolean()
-    matriz: boolean;
+    // @IsBoolean()
+    // matriz: boolean;
 
     @IsNotEmpty() @IsString()
     nome: string;
@@ -44,7 +44,7 @@ export class CriarFilialDto{
     @IsNumber()
     numFunc: number;
 
-    @IsNumber()
-    fatAnual: number;
+    // @IsNumber()
+    // fatAnual: number;
     
 }

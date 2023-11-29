@@ -3,7 +3,7 @@ import { Funcionario } from 'src/funcionarios/interfaces/funcionario.interface';
 
 export interface Filial extends Document {
     readonly cnpj: string;
-    matriz: boolean;
+    //matriz: boolean;
     nome: string;
 
     cep: string;
@@ -18,6 +18,6 @@ export interface Filial extends Document {
     responsavel: Funcionario;
     segmento: string;
     numFunc: number;
-    fatAnual: number;
+    //fatAnual: number;
     status: boolean;
 }
