@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Modal, Button, Card, Form, Container, Row, Col } from "react-bootstrap";
+import { Modal, Button, Card, Form, Container, Row, Col } from "react-bootstrap"; 
 
 function UserProfile() {
   const [funcionarios, setFuncionarios] = useState([]);
@@ -178,7 +178,7 @@ function UserProfile() {
           <Col md="12">
             <Card>
               <Card.Header>
-                <Card.Title as="h4">Editar Perfil</Card.Title>
+                <Card.Title as="h4">Editar Funcionário</Card.Title>
               </Card.Header>
               <Card.Body>
                 {/* Campo de pesquisa */}
