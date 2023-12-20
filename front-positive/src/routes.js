@@ -22,7 +22,7 @@ if (parseInt(localStorage.getItem('nivelAcesso')) === 1) {
     },
     {
       path: "/api/funcionarios",
-      name: "Perfil",
+      name: "Funcionários",
       icon: "nc-icon nc-circle-09",
       component: UserProfile,
       layout: "/admin"

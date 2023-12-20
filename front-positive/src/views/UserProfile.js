@@ -178,7 +178,7 @@ function UserProfile() {
           <Col md="12">
             <Card>
               <Card.Header>
-                <Card.Title as="h4">Editar Perfil</Card.Title>
+                <Card.Title as="h4">Editar Funcionário</Card.Title>
               </Card.Header>
               <Card.Body>
                 {/* Campo de pesquisa */}
