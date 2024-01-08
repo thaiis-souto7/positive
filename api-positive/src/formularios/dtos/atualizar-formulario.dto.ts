@@ -5,16 +5,16 @@ import { Pergunta } from "src/perguntas/interfaces/pergunta.interface";
 export class AtualizarFormularioDto{
 
     @IsString() @IsNotEmpty()
-    responsavel: Funcionario;
+    descricao: Funcionario;
 
     @IsString() @IsNotEmpty()
-    usuario: Funcionario; 
+    responsavel: Funcionario;
 
-    @IsArray() @IsNotEmpty()
-    perguntas: Array<Pergunta>;
-
-    @IsArray() @IsNotEmpty()
-    respostas: Array<String>;
+    @IsArray()
+    itens: Array<{
+        pergunta: Pergunta;
+        resposta: string;
+    }>;
 
     @IsBoolean() @IsNotEmpty()
     resolvido: boolean;

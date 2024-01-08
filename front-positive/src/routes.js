@@ -3,7 +3,8 @@ import Dashboard from "views/Dashboard.js";
 import UserProfile from "views/UserProfile.js";
 import Filial from "views/Filial.js";
 import Perguntas from "views/Perguntas.js";
-import TableList from "views/TableList.js";
+import Relatorios from "views/Relatorios.js";
+import Formulario from "views/Formularios.js";
 //import Typography from "views/Typography.js";
 //import Icons from "views/Icons.js";
 // import Maps from "views/Maps.js";
@@ -45,14 +46,14 @@ if (parseInt(localStorage.getItem('nivelAcesso')) === 1) {
       path: "/formulario",
       name: "Formulário",
       icon: "nc-icon nc-single-copy-04",
-      component: Filial,
+      component: Formulario,
       layout: "/admin"
     },
     {
       path: "/relatorio",
       name: "Relatórios",
       icon: "nc-icon nc-notes",
-      component: TableList,
+      component: Relatorios,
       layout: "/admin"
     },
   ];
@@ -69,7 +70,7 @@ if (parseInt(localStorage.getItem('nivelAcesso')) === 1) {
       path: "/formulario",
       name: "Formulário",
       icon: "nc-icon nc-single-copy-04",
-      component: Filial,
+      component: Formulario,
       layout: "/admin"
     }];
 }

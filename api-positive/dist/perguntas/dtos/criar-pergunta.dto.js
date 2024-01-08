@@ -18,5 +18,10 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CriarPerguntaDto.prototype, "pergunta", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CriarPerguntaDto.prototype, "tipo", void 0);
 exports.CriarPerguntaDto = CriarPerguntaDto;
 //# sourceMappingURL=criar-pergunta.dto.js.map
