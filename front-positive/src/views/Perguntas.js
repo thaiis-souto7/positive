@@ -13,6 +13,7 @@ function Perguntas() {
   const [successMessage, setSuccessMessage] = useState("");
   const [formData, setFormData] = useState({
     pergunta: "",
+    tipo: "",
     status: "",
   });
 
@@ -136,6 +137,7 @@ function Perguntas() {
                   <thead>
                     <tr>
                       <th>Pergunta</th>
+                      <th>Tipo</th>
                       <th>Status</th>
                       <th></th>
                     </tr>
@@ -144,6 +146,7 @@ function Perguntas() {
                     {perguntas.map((pergunta) => (
                       <tr key={pergunta._id}>
                         <td>{pergunta.pergunta}</td>
+                        <td>{pergunta.tipo.toUpperCase()}</td>
                         <td>{pergunta.status == true ? "ATIVO" : "INATIVO"}</td>
                         <td>
                           <Button
@@ -173,6 +176,7 @@ function Perguntas() {
                   onClick={() => {
                     setFormData({
                       pergunta: "",
+                      tipo: "",
                       status: "",
                     });
                     setShowModal(true);
