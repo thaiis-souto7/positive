@@ -17,22 +17,16 @@ __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Object)
-], CriarFormularioDto.prototype, "responsavel", void 0);
+], CriarFormularioDto.prototype, "descricao", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Object)
-], CriarFormularioDto.prototype, "usuario", void 0);
+], CriarFormularioDto.prototype, "responsavel", void 0);
 __decorate([
     (0, class_validator_1.IsArray)(),
-    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Array)
-], CriarFormularioDto.prototype, "perguntas", void 0);
-__decorate([
-    (0, class_validator_1.IsArray)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Array)
-], CriarFormularioDto.prototype, "respostas", void 0);
+], CriarFormularioDto.prototype, "itens", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsNotEmpty)(),

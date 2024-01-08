@@ -1,0 +1,169 @@
+/* Estilo personalizado para o checkbox */
+.custom-checkbox input[type="checkbox"] {
+    /* Oculta o checkbox padrão */
+    opacity: 0;
+    position: absolute;
+}
+
+/* Estilo para simular o checkbox quando não está marcado */
+.custom-checkbox input[type="checkbox"]+label::before {
+    content: "";
+    display: inline-block;
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    background-color: white;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+/* Estilo para simular o checkbox quando está marcado */
+.custom-checkbox input[type="checkbox"]:checked+label::before {
+    background-color: #60e721;
+    /* Cor de fundo quando marcado */
+    background-repeat: no-repeat;
+    background-position: center;
+    border-color: #60e721;
+}
+
+.text {
+    padding-top: 25px;
+}
+
+
+/* -------------------------------------------------------- */
+
+
+input[type=range] {
+    height: 32px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 16px;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px #000000;
+    background: #70789c;
+    border-radius: 25px;
+    border: 1px solid #70789c;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #828282;
+    border: 1px solid #70789c;
+    height: 24px;
+    width: 35px;
+    border-radius: 6px;
+    background: #DADADA;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -5px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #70789c;
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 16px;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px #000000;
+    background: #70789c;
+    border-radius: 25px;
+    border: 1px solid #70789c;
+}
+
+input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #828282;
+    border: 1px solid #70789c;
+    height: 24px;
+    width: 35px;
+    border-radius: 6px;
+    background: #DADADA;
+    cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    height: 16px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+    background: #70789c;
+    border: 1px solid #70789c;
+    border-radius: 50px;
+    box-shadow: 0px 0px 0px #000000;
+}
+
+input[type=range]::-ms-fill-upper {
+    background: #70789c;
+    border: 1px solid #70789c;
+    border-radius: 50px;
+    box-shadow: 0px 0px 0px #000000;
+}
+
+input[type=range]::-ms-thumb {
+    margin-top: 1px;
+    box-shadow: 1px 1px 1px #828282;
+    border: 1px solid #70789c;
+    height: 24px;
+    width: 35px;
+    border-radius: 6px;
+    background: #DADADA;
+    cursor: pointer;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+    background: #70789c;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+    background: #70789c;
+}
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.range-labels span {
+    display: inline-block;
+    /* Outros estilos conforme necessário */
+}
+
+.range-container {
+    position: relative;
+}
+
+.range-steps {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    bottom: -20px; /* Ajuste conforme necessário */
+}
+
+.range-steps span {
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+.range-steps span:nth-child(1) { left: 0%; }
+.range-steps span:nth-child(2) { left: 25%; }
+.range-steps span:nth-child(3) { left: 50%; }
+.range-steps span:nth-child(4) { left: 75%; }
+.range-steps span:nth-child(5) { left: 100%; }

@@ -17,5 +17,9 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], AtualizarPerguntaDto.prototype, "pergunta", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], AtualizarPerguntaDto.prototype, "tipo", void 0);
 exports.AtualizarPerguntaDto = AtualizarPerguntaDto;
 //# sourceMappingURL=atualizar-pergunta.dto.js.map
