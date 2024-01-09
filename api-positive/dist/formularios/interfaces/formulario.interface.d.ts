@@ -4,10 +4,5 @@ import { Pergunta } from 'src/perguntas/interfaces/pergunta.interface';
 export interface Formulario extends Document {
     descricao: String;
     responsavel: Funcionario;
-    usuario: Funcionario;
-    itens: Array<{
-        pergunta: Pergunta;
-        resposta: string | null;
-    }>;
-    resolvido: boolean;
+    perguntas: Array<Pergunta>;
 }

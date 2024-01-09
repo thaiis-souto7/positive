@@ -26,11 +26,6 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsArray)(),
     __metadata("design:type", Array)
-], CriarFormularioDto.prototype, "itens", void 0);
-__decorate([
-    (0, class_validator_1.IsBoolean)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Boolean)
-], CriarFormularioDto.prototype, "resolvido", void 0);
+], CriarFormularioDto.prototype, "perguntas", void 0);
 exports.CriarFormularioDto = CriarFormularioDto;
 //# sourceMappingURL=criar-formulario.dto.js.map

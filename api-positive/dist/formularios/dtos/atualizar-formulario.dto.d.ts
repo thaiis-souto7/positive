@@ -3,9 +3,5 @@ import { Pergunta } from "src/perguntas/interfaces/pergunta.interface";
 export declare class AtualizarFormularioDto {
     descricao: Funcionario;
     responsavel: Funcionario;
-    itens: Array<{
-        pergunta: Pergunta;
-        resposta: string;
-    }>;
-    resolvido: boolean;
+    perguntas: Array<Pergunta>;
 }

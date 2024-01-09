@@ -14,12 +14,13 @@ const filiais_module_1 = require("./filiais/filiais.module");
 const perguntas_module_1 = require("./perguntas/perguntas.module");
 const formularios_module_1 = require("./formularios/formularios.module");
 const login_module_1 = require("./login/login.module");
+const respostas_module_1 = require("./respostas/respostas.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [mongoose_1.MongooseModule.forRoot('mongodb+srv://thaiis_souto:t09031999@positive.h5yx5yp.mongodb.net/positive?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }),
-            funcionarios_module_1.FuncionariosModule, filiais_module_1.FiliaisModule, perguntas_module_1.PerguntasModule, formularios_module_1.FormulariosModule, login_module_1.LoginModule
+            funcionarios_module_1.FuncionariosModule, filiais_module_1.FiliaisModule, perguntas_module_1.PerguntasModule, formularios_module_1.FormulariosModule, respostas_module_1.RespostasModule, login_module_1.LoginModule
         ],
         controllers: [],
         providers: [],
