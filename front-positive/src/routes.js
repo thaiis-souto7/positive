@@ -7,7 +7,7 @@ import Relatorios from "views/Relatorios.js";
 import Formulario from "views/Formularios.js";
 import Perfil from "views/Perfil.js";
 //import Typography from "views/Typography.js";
-//import Icons from "views/Icons.js";
+// import Icons from "views/Icons.js";
 // import Maps from "views/Maps.js";
 // import Notifications from "views/Notifications.js";
 // import Upgrade from "views/Upgrade.js";
