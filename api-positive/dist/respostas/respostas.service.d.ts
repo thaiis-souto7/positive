@@ -6,9 +6,10 @@ export declare class RespostaService {
     private readonly respostaModel;
     private readonly logger;
     constructor(respostaModel: Model<Resposta>);
-    createFunc(criarRespostaDto: CriarRespostaDto): Promise<Resposta>;
-    updateFunc(_id: string, atualizarRespostaDto: AtualizarRespostaDto): Promise<void>;
-    getAllFunc(): Promise<Resposta[]>;
-    getFuncById(_id: string): Promise<Resposta>;
-    deleteFunc(_id: string): Promise<any>;
+    countAllResp(): Promise<number>;
+    createResp(criarRespostaDto: CriarRespostaDto): Promise<Resposta>;
+    updateResp(_id: string, atualizarRespostaDto: AtualizarRespostaDto): Promise<void>;
+    getAllResp(): Promise<Resposta[]>;
+    getRespById(_id: string): Promise<Resposta>;
+    deleteResp(_id: string): Promise<any>;
 }

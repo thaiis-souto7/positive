@@ -13,7 +13,7 @@ private readonly logger = new Logger(FiliaisService.name);
 constructor (@InjectModel('Filial') private readonly filialModel: Model<Filial>) {}
 
 
-    async createFunc(criarFilialDto: CriarFilialDto): Promise<Filial> {
+    async createFilial(criarFilialDto: CriarFilialDto): Promise<Filial> {
         const { email } = criarFilialDto;
         const filialEncontrado = await this.filialModel.findOne({ email }).exec();
         
@@ -24,7 +24,7 @@ constructor (@InjectModel('Filial') private readonly filialModel: Model<Filial>)
         return filialCriado.save();
     }
 
-    async updateFunc(_id: string, atualizarFilialDto: AtualizarFilialDto): Promise<void> {
+    async updateFilial(_id: string, atualizarFilialDto: AtualizarFilialDto): Promise<void> {
 
         const filialEncontrado = await this.filialModel.findOne({ _id }).exec();
         
@@ -34,11 +34,11 @@ constructor (@InjectModel('Filial') private readonly filialModel: Model<Filial>)
         await this.filialModel.findOneAndUpdate({ _id }, { $set: atualizarFilialDto }).exec();
     }
 
-    async getAllFunc(): Promise<Filial[]> {
+    async getAllFilial(): Promise<Filial[]> {
         return await this.filialModel.find().exec();
     }
     
-    async getFuncById(_id: string): Promise<Filial> {
+    async getFilialById(_id: string): Promise<Filial> {
         const filialEncontrado = await this.filialModel.findOne({ _id }).exec();
         if(!filialEncontrado){
             throw new Error('Filial não encontrada');
@@ -46,7 +46,7 @@ constructor (@InjectModel('Filial') private readonly filialModel: Model<Filial>)
         return filialEncontrado;
     }
 
-    async deleteFunc(_id: string): Promise<any> {
+    async deleteFilial(_id: string): Promise<any> {
 
         const filialEncontrado = await this.filialModel.findOne({ _id }).exec();
         if(!filialEncontrado){

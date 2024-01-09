@@ -22,28 +22,28 @@ let LoginService = LoginService_1 = class LoginService {
         this.loginModel = loginModel;
         this.logger = new common_1.Logger(LoginService_1.name);
     }
-    async createFunc(criarLoginDto) {
+    async createLogin(criarLoginDto) {
         const loginCriado = await new this.loginModel(criarLoginDto);
         return loginCriado.save();
     }
-    async updateFunc(_id, atualizarLoginDto) {
+    async updateLogin(_id, atualizarLoginDto) {
         const loginEncontrado = await this.loginModel.findOne({ _id }).exec();
         if (!loginEncontrado) {
             throw new common_1.NotFoundException('Login não encontrada');
         }
         await this.loginModel.findOneAndUpdate({ _id }, { $set: atualizarLoginDto }).exec();
     }
-    async getAllFunc() {
+    async getAllLogin() {
         return await this.loginModel.find().exec();
     }
-    async getFuncById(_id) {
+    async getLoginById(_id) {
         const loginEncontrado = await this.loginModel.findOne({ _id }).exec();
         if (!loginEncontrado) {
             throw new Error('Login não encontrada');
         }
         return loginEncontrado;
     }
-    async deleteFunc(_id) {
+    async deleteLogin(_id) {
         const loginEncontrado = await this.loginModel.findOne({ _id }).exec();
         if (!loginEncontrado) {
             throw new Error('Login não encontrada');

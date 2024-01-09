@@ -6,9 +6,10 @@ export declare class FormulariosService {
     private readonly formularioModel;
     private readonly logger;
     constructor(formularioModel: Model<Formulario>);
-    createFunc(criarFormularioDto: CriarFormularioDto): Promise<Formulario>;
-    updateFunc(_id: string, atualizarFormularioDto: AtualizarFormularioDto): Promise<void>;
-    getAllFunc(): Promise<Formulario[]>;
-    getFuncById(_id: string): Promise<Formulario>;
-    deleteFunc(_id: string): Promise<any>;
+    countAllForm(): Promise<number>;
+    createForm(criarFormularioDto: CriarFormularioDto): Promise<Formulario>;
+    updateForm(_id: string, atualizarFormularioDto: AtualizarFormularioDto): Promise<void>;
+    getAllForm(): Promise<Formulario[]>;
+    getFormById(_id: string): Promise<Formulario>;
+    deleteForm(_id: string): Promise<any>;
 }

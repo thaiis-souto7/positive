@@ -22,6 +22,9 @@ let FuncionariosService = FuncionariosService_1 = class FuncionariosService {
         this.funcionarioModel = funcionarioModel;
         this.logger = new common_1.Logger(FuncionariosService_1.name);
     }
+    async countAllFunc() {
+        return await this.funcionarioModel.countDocuments();
+    }
     async createFunc(criarFuncionarioDto) {
         const { email } = criarFuncionarioDto;
         const funcionarioEncontrado = await this.funcionarioModel.findOne({ email }).exec();

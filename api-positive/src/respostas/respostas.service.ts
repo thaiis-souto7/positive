@@ -12,13 +12,17 @@ export class RespostaService {
 private readonly logger = new Logger(RespostaService.name);
 constructor (@InjectModel('Resposta') private readonly respostaModel: Model<Resposta>) {}
 
-    async createFunc(criarRespostaDto: CriarRespostaDto): Promise<Resposta> {
+    async countAllResp(): Promise<number> {
+        return await this.respostaModel.countDocuments();
+    }
+
+    async createResp(criarRespostaDto: CriarRespostaDto): Promise<Resposta> {
         
         const respostaCriado = await new this.respostaModel(criarRespostaDto);
         return respostaCriado.save();
     }
 
-    async updateFunc(_id: string, atualizarRespostaDto: AtualizarRespostaDto): Promise<void> {
+    async updateResp(_id: string, atualizarRespostaDto: AtualizarRespostaDto): Promise<void> {
 
         const respostaEncontrado = await this.respostaModel.findOne({ _id }).exec();
         
@@ -28,11 +32,11 @@ constructor (@InjectModel('Resposta') private readonly respostaModel: Model<Resp
         await this.respostaModel.findOneAndUpdate({ _id }, { $set: atualizarRespostaDto }).exec();
     }
 
-    async getAllFunc(): Promise<Resposta[]> {
+    async getAllResp(): Promise<Resposta[]> {
         return await this.respostaModel.find().exec();
     }
     
-    async getFuncById(_id: string): Promise<Resposta> {
+    async getRespById(_id: string): Promise<Resposta> {
         const respostaEncontrado = await this.respostaModel.findOne({ _id }).exec();
         if(!respostaEncontrado){
             throw new Error('Formulário não encontrado');
@@ -40,7 +44,7 @@ constructor (@InjectModel('Resposta') private readonly respostaModel: Model<Resp
         return respostaEncontrado;
     }
 
-    async deleteFunc(_id: string): Promise<any> {
+    async deleteResp(_id: string): Promise<any> {
 
         const respostaEncontrado = await this.respostaModel.findOne({ _id }).exec();
         if(!respostaEncontrado){

@@ -22,22 +22,31 @@ let FormulariosController = class FormulariosController {
     constructor(formulario) {
         this.formulario = formulario;
     }
-    async createFunc(criarFormularioDto) {
-        return await this.formulario.createFunc(criarFormularioDto);
+    async getCountForm() {
+        return await this.formulario.countAllForm();
     }
-    async updateFunc(atualizarFormularioDto, _id) {
-        await this.formulario.updateFunc(_id, atualizarFormularioDto);
+    async createForm(criarFormularioDto) {
+        return await this.formulario.createForm(criarFormularioDto);
     }
-    async getAllFunc() {
-        return await this.formulario.getAllFunc();
+    async updateForm(atualizarFormularioDto, _id) {
+        await this.formulario.updateForm(_id, atualizarFormularioDto);
     }
-    async getOneFunc(_id) {
-        return await this.formulario.getFuncById(_id);
+    async getAllForm() {
+        return await this.formulario.getAllForm();
     }
-    async deleteFunc(_id) {
-        await this.formulario.deleteFunc(_id);
+    async getOneForm(_id) {
+        return await this.formulario.getFormById(_id);
+    }
+    async deleteForm(_id) {
+        await this.formulario.deleteForm(_id);
     }
 };
+__decorate([
+    (0, common_1.Get)('/count'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], FormulariosController.prototype, "getCountForm", null);
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
@@ -45,7 +54,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [criar_formulario_dto_1.CriarFormularioDto]),
     __metadata("design:returntype", Promise)
-], FormulariosController.prototype, "createFunc", null);
+], FormulariosController.prototype, "createForm", null);
 __decorate([
     (0, common_1.Put)('/:_id'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
@@ -54,27 +63,27 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [atualizar_formulario_dto_1.AtualizarFormularioDto, String]),
     __metadata("design:returntype", Promise)
-], FormulariosController.prototype, "updateFunc", null);
+], FormulariosController.prototype, "updateForm", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], FormulariosController.prototype, "getAllFunc", null);
+], FormulariosController.prototype, "getAllForm", null);
 __decorate([
     (0, common_1.Get)('/:_id'),
     __param(0, (0, common_1.Param)('_id', formulario_validation_params_pipe_1.FormularioValidationParamsPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], FormulariosController.prototype, "getOneFunc", null);
+], FormulariosController.prototype, "getOneForm", null);
 __decorate([
     (0, common_1.Delete)('/:_id'),
     __param(0, (0, common_1.Param)('_id', formulario_validation_params_pipe_1.FormularioValidationParamsPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], FormulariosController.prototype, "deleteFunc", null);
+], FormulariosController.prototype, "deleteForm", null);
 FormulariosController = __decorate([
     (0, common_1.Controller)('api/formularios'),
     __metadata("design:paramtypes", [formularios_service_1.FormulariosService])

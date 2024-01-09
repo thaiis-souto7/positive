@@ -22,22 +22,31 @@ let RespostasController = class RespostasController {
     constructor(resposta) {
         this.resposta = resposta;
     }
-    async createFunc(criarRespostaDto) {
-        return await this.resposta.createFunc(criarRespostaDto);
+    async getCountResp() {
+        return await this.resposta.countAllResp();
     }
-    async updateFunc(atualizarRespostaDto, _id) {
-        await this.resposta.updateFunc(_id, atualizarRespostaDto);
+    async createResp(criarRespostaDto) {
+        return await this.resposta.createResp(criarRespostaDto);
     }
-    async getAllFunc() {
-        return await this.resposta.getAllFunc();
+    async updateResp(atualizarRespostaDto, _id) {
+        await this.resposta.updateResp(_id, atualizarRespostaDto);
     }
-    async getOneFunc(_id) {
-        return await this.resposta.getFuncById(_id);
+    async getAllResp() {
+        return await this.resposta.getAllResp();
     }
-    async deleteFunc(_id) {
-        await this.resposta.deleteFunc(_id);
+    async getOneResp(_id) {
+        return await this.resposta.getRespById(_id);
+    }
+    async deleteResp(_id) {
+        await this.resposta.deleteResp(_id);
     }
 };
+__decorate([
+    (0, common_1.Get)('/count'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], RespostasController.prototype, "getCountResp", null);
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
@@ -45,7 +54,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [criar_resposta_dto_1.CriarRespostaDto]),
     __metadata("design:returntype", Promise)
-], RespostasController.prototype, "createFunc", null);
+], RespostasController.prototype, "createResp", null);
 __decorate([
     (0, common_1.Put)('/:_id'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
@@ -54,27 +63,27 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [atualizar_resposta_dto_1.AtualizarRespostaDto, String]),
     __metadata("design:returntype", Promise)
-], RespostasController.prototype, "updateFunc", null);
+], RespostasController.prototype, "updateResp", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], RespostasController.prototype, "getAllFunc", null);
+], RespostasController.prototype, "getAllResp", null);
 __decorate([
     (0, common_1.Get)('/:_id'),
     __param(0, (0, common_1.Param)('_id', resposta_validation_params_pipe_1.RespostaValidationParamsPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], RespostasController.prototype, "getOneFunc", null);
+], RespostasController.prototype, "getOneResp", null);
 __decorate([
     (0, common_1.Delete)('/:_id'),
     __param(0, (0, common_1.Param)('_id', resposta_validation_params_pipe_1.RespostaValidationParamsPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], RespostasController.prototype, "deleteFunc", null);
+], RespostasController.prototype, "deleteResp", null);
 RespostasController = __decorate([
     (0, common_1.Controller)('api/respostas'),
     __metadata("design:paramtypes", [respostas_service_1.RespostaService])

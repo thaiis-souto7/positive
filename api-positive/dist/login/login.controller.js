@@ -22,20 +22,20 @@ let LoginController = class LoginController {
     constructor(login) {
         this.login = login;
     }
-    async createFunc(criarLoginDto) {
-        return await this.login.createFunc(criarLoginDto);
+    async createLogin(criarLoginDto) {
+        return await this.login.createLogin(criarLoginDto);
     }
-    async updateFunc(atualizarLoginDto, _id) {
-        await this.login.updateFunc(_id, atualizarLoginDto);
+    async updateLogin(atualizarLoginDto, _id) {
+        await this.login.updateLogin(_id, atualizarLoginDto);
     }
-    async getAllFunc() {
-        return await this.login.getAllFunc();
+    async getAllLogin() {
+        return await this.login.getAllLogin();
     }
-    async getOneFunc(_id) {
-        return await this.login.getFuncById(_id);
+    async getOneLogin(_id) {
+        return await this.login.getLoginById(_id);
     }
-    async deleteFunc(_id) {
-        await this.login.deleteFunc(_id);
+    async deleteLogin(_id) {
+        await this.login.deleteLogin(_id);
     }
 };
 __decorate([
@@ -45,7 +45,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [criar_login_dto_1.CriarLoginDto]),
     __metadata("design:returntype", Promise)
-], LoginController.prototype, "createFunc", null);
+], LoginController.prototype, "createLogin", null);
 __decorate([
     (0, common_1.Put)('/:_id'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
@@ -54,27 +54,27 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [atualizar_login_dto_1.AtualizarLoginDto, String]),
     __metadata("design:returntype", Promise)
-], LoginController.prototype, "updateFunc", null);
+], LoginController.prototype, "updateLogin", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], LoginController.prototype, "getAllFunc", null);
+], LoginController.prototype, "getAllLogin", null);
 __decorate([
     (0, common_1.Get)('/:_id'),
     __param(0, (0, common_1.Param)('_id', login_validation_params_pipe_1.LoginValidationParamsPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], LoginController.prototype, "getOneFunc", null);
+], LoginController.prototype, "getOneLogin", null);
 __decorate([
     (0, common_1.Delete)('/:_id'),
     __param(0, (0, common_1.Param)('_id', login_validation_params_pipe_1.LoginValidationParamsPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], LoginController.prototype, "deleteFunc", null);
+], LoginController.prototype, "deleteLogin", null);
 LoginController = __decorate([
     (0, common_1.Controller)('api/login'),
     __metadata("design:paramtypes", [login_service_1.LoginService])

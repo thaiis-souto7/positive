@@ -6,9 +6,9 @@ export declare class LoginService {
     private readonly loginModel;
     private readonly logger;
     constructor(loginModel: Model<Login>);
-    createFunc(criarLoginDto: CriarLoginDto): Promise<Login>;
-    updateFunc(_id: string, atualizarLoginDto: AtualizarLoginDto): Promise<void>;
-    getAllFunc(): Promise<Login[]>;
-    getFuncById(_id: string): Promise<Login>;
-    deleteFunc(_id: string): Promise<any>;
+    createLogin(criarLoginDto: CriarLoginDto): Promise<Login>;
+    updateLogin(_id: string, atualizarLoginDto: AtualizarLoginDto): Promise<void>;
+    getAllLogin(): Promise<Login[]>;
+    getLoginById(_id: string): Promise<Login>;
+    deleteLogin(_id: string): Promise<any>;
 }

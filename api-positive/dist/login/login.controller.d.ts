@@ -5,9 +5,9 @@ import { Login } from './interfaces/login.interface';
 export declare class LoginController {
     private readonly login;
     constructor(login: LoginService);
-    createFunc(criarLoginDto: CriarLoginDto): Promise<Login>;
-    updateFunc(atualizarLoginDto: AtualizarLoginDto, _id: string): Promise<void>;
-    getAllFunc(): Promise<Login[]>;
-    getOneFunc(_id: string): Promise<Login>;
-    deleteFunc(_id: string): Promise<void>;
+    createLogin(criarLoginDto: CriarLoginDto): Promise<Login>;
+    updateLogin(atualizarLoginDto: AtualizarLoginDto, _id: string): Promise<void>;
+    getAllLogin(): Promise<Login[]>;
+    getOneLogin(_id: string): Promise<Login>;
+    deleteLogin(_id: string): Promise<void>;
 }

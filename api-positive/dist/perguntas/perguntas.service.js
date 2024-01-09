@@ -22,7 +22,7 @@ let PerguntasService = PerguntasService_1 = class PerguntasService {
         this.perguntaModel = perguntaModel;
         this.logger = new common_1.Logger(PerguntasService_1.name);
     }
-    async createFunc(criarPerguntaDto) {
+    async createPerg(criarPerguntaDto) {
         const { pergunta } = criarPerguntaDto;
         const perguntaEncontrado = await this.perguntaModel.findOne({ pergunta }).exec();
         if (perguntaEncontrado) {
@@ -31,24 +31,24 @@ let PerguntasService = PerguntasService_1 = class PerguntasService {
         const perguntaCriado = await new this.perguntaModel(criarPerguntaDto);
         return perguntaCriado.save();
     }
-    async updateFunc(_id, atualizarPerguntaDto) {
+    async updatePerg(_id, atualizarPerguntaDto) {
         const perguntaEncontrado = await this.perguntaModel.findOne({ _id }).exec();
         if (!perguntaEncontrado) {
             throw new common_1.NotFoundException('Pergunta não encontrada');
         }
         await this.perguntaModel.findOneAndUpdate({ _id }, { $set: atualizarPerguntaDto }).exec();
     }
-    async getAllFunc() {
+    async getAllPerg() {
         return await this.perguntaModel.find().exec();
     }
-    async getFuncById(_id) {
+    async getPergById(_id) {
         const perguntaEncontrado = await this.perguntaModel.findOne({ _id }).exec();
         if (!perguntaEncontrado) {
             throw new Error('Pergunta não encontrada');
         }
         return perguntaEncontrado;
     }
-    async deleteFunc(_id) {
+    async deletePerg(_id) {
         const perguntaEncontrado = await this.perguntaModel.findOne({ _id }).exec();
         if (!perguntaEncontrado) {
             throw new Error('Pergunta não encontrada');

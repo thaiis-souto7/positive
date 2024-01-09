@@ -13,13 +13,13 @@ private readonly logger = new Logger(LoginService.name);
 constructor (@InjectModel('Login') private readonly loginModel: Model<Login>) {}
 
 
-    async createFunc(criarLoginDto: CriarLoginDto): Promise<Login> {
+    async createLogin(criarLoginDto: CriarLoginDto): Promise<Login> {
     
         const loginCriado = await new this.loginModel(criarLoginDto);
         return loginCriado.save();
     }
 
-    async updateFunc(_id: string, atualizarLoginDto: AtualizarLoginDto): Promise<void> {
+    async updateLogin(_id: string, atualizarLoginDto: AtualizarLoginDto): Promise<void> {
 
         const loginEncontrado = await this.loginModel.findOne({ _id }).exec();
         
@@ -29,11 +29,11 @@ constructor (@InjectModel('Login') private readonly loginModel: Model<Login>) {}
         await this.loginModel.findOneAndUpdate({ _id }, { $set: atualizarLoginDto }).exec();
     }
 
-    async getAllFunc(): Promise<Login[]> {
+    async getAllLogin(): Promise<Login[]> {
         return await this.loginModel.find().exec();
     }
     
-    async getFuncById(_id: string): Promise<Login> {
+    async getLoginById(_id: string): Promise<Login> {
         const loginEncontrado = await this.loginModel.findOne({ _id }).exec();
         if(!loginEncontrado){
             throw new Error('Login não encontrada');
@@ -41,7 +41,7 @@ constructor (@InjectModel('Login') private readonly loginModel: Model<Login>) {}
         return loginEncontrado;
     }
 
-    async deleteFunc(_id: string): Promise<any> {
+    async deleteLogin(_id: string): Promise<any> {
 
         const loginEncontrado = await this.loginModel.findOne({ _id }).exec();
         if(!loginEncontrado){

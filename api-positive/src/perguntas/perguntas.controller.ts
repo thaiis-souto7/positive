@@ -13,32 +13,32 @@ export class PerguntasController {
 
     @Post()
     @UsePipes(ValidationPipe)
-    async createFunc(@Body() criarPerguntaDto: CriarPerguntaDto): Promise<Pergunta>{
-        return await this.pergunta.createFunc(criarPerguntaDto);
+    async createPerg(@Body() criarPerguntaDto: CriarPerguntaDto): Promise<Pergunta>{
+        return await this.pergunta.createPerg(criarPerguntaDto);
     }
 
     @Put('/:_id')
     @UsePipes(ValidationPipe)
-    async updateFunc( 
+    async updatePerg( 
         @Body() atualizarPerguntaDto: AtualizarPerguntaDto, 
         @Param('_id', PerguntaValidationParamsPipe) _id: string): Promise<void> {
         
-        await this.pergunta.updateFunc(_id, atualizarPerguntaDto);
+        await this.pergunta.updatePerg(_id, atualizarPerguntaDto);
     }
 
     @Get()          
-    async getAllFunc(): Promise<Pergunta[]> {
-        return await this.pergunta.getAllFunc();
+    async getAllPerg(): Promise<Pergunta[]> {
+        return await this.pergunta.getAllPerg();
     }
 
     @Get('/:_id')          
-    async getOneFunc(@Param('_id', PerguntaValidationParamsPipe) _id: string): Promise<Pergunta> {
-        return await this.pergunta.getFuncById(_id);
+    async getOnePerg(@Param('_id', PerguntaValidationParamsPipe) _id: string): Promise<Pergunta> {
+        return await this.pergunta.getPergById(_id);
     }
 
     @Delete('/:_id')
-    async deleteFunc(@Param('_id', PerguntaValidationParamsPipe) _id: string): Promise<void> {
-        await this.pergunta.deleteFunc(_id);
+    async deletePerg(@Param('_id', PerguntaValidationParamsPipe) _id: string): Promise<void> {
+        await this.pergunta.deletePerg(_id);
     }
 
 }
