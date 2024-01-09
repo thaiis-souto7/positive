@@ -46,7 +46,7 @@ function Login() {
                 localStorage.setItem('nivelAcesso', validUser.nivelAcesso);
                 localStorage.setItem('logout', 'false');
     
-                window.location.href = "/admin/dashboard";
+                window.location.href = "/admin/perfil";
                 // history.push("/admin/dashboard");
             } else {
                 throw new Error("Usuário ou senha incorretos");

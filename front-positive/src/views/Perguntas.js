@@ -150,13 +150,13 @@ function Perguntas() {
                         <td>{pergunta.status == true ? "ATIVO" : "INATIVO"}</td>
                         <td>
                           <Button
-                            variant="info"
-                            onClick={() => {
-                              setFormData(pergunta);
-                              setShowModal(true);
-                            }}
-                          >
-                            Editar
+                             variant="info"
+                             onClick={() => {
+                               setFormData(pergunta);
+                               setShowModal(true);
+                             }}
+                           >
+                             Editar
                           </Button>{" "}
                           <Button
                             variant="danger"
@@ -202,7 +202,7 @@ function Perguntas() {
           <Form>
             {/* Campos de formulário para criar/editar */}
             <Form.Group as={Row}>
-              <Col md={10}>
+              <Col md={6}>
               <Form.Label>Descrição</Form.Label>
               <Form.Control
                 name="pergunta"
@@ -211,6 +211,15 @@ function Perguntas() {
                 type="text"
               />
               </Col>
+              <Col md={4}>
+              <Form.Label>Tipo</Form.Label>
+              <Form.Control
+                name="tipo"
+                value={formData.tipo}
+                onChange={handleInputChange}
+                type="text"
+              />
+              </Col> 
               <Col md={2}>
               <Form.Label>Status</Form.Label>
               <Form.Control
