@@ -22,28 +22,31 @@ let RespostaService = RespostaService_1 = class RespostaService {
         this.respostaModel = respostaModel;
         this.logger = new common_1.Logger(RespostaService_1.name);
     }
-    async createFunc(criarRespostaDto) {
+    async countAllResp() {
+        return await this.respostaModel.countDocuments();
+    }
+    async createResp(criarRespostaDto) {
         const respostaCriado = await new this.respostaModel(criarRespostaDto);
         return respostaCriado.save();
     }
-    async updateFunc(_id, atualizarRespostaDto) {
+    async updateResp(_id, atualizarRespostaDto) {
         const respostaEncontrado = await this.respostaModel.findOne({ _id }).exec();
         if (!respostaEncontrado) {
             throw new common_1.NotFoundException('Formulário não encontrado');
         }
         await this.respostaModel.findOneAndUpdate({ _id }, { $set: atualizarRespostaDto }).exec();
     }
-    async getAllFunc() {
+    async getAllResp() {
         return await this.respostaModel.find().exec();
     }
-    async getFuncById(_id) {
+    async getRespById(_id) {
         const respostaEncontrado = await this.respostaModel.findOne({ _id }).exec();
         if (!respostaEncontrado) {
             throw new Error('Formulário não encontrado');
         }
         return respostaEncontrado;
     }
-    async deleteFunc(_id) {
+    async deleteResp(_id) {
         const respostaEncontrado = await this.respostaModel.findOne({ _id }).exec();
         if (!respostaEncontrado) {
             throw new Error('Formulário não encontrado');

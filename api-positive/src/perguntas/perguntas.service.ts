@@ -13,7 +13,7 @@ private readonly logger = new Logger(PerguntasService.name);
 constructor (@InjectModel('Pergunta') private readonly perguntaModel: Model<Pergunta>) {}
 
 
-    async createFunc(criarPerguntaDto: CriarPerguntaDto): Promise<Pergunta> {
+    async createPerg(criarPerguntaDto: CriarPerguntaDto): Promise<Pergunta> {
         const { pergunta } = criarPerguntaDto;
         const perguntaEncontrado = await this.perguntaModel.findOne({ pergunta }).exec();
         
@@ -24,7 +24,7 @@ constructor (@InjectModel('Pergunta') private readonly perguntaModel: Model<Perg
         return perguntaCriado.save();
     }
 
-    async updateFunc(_id: string, atualizarPerguntaDto: AtualizarPerguntaDto): Promise<void> {
+    async updatePerg(_id: string, atualizarPerguntaDto: AtualizarPerguntaDto): Promise<void> {
 
         const perguntaEncontrado = await this.perguntaModel.findOne({ _id }).exec();
         
@@ -34,11 +34,11 @@ constructor (@InjectModel('Pergunta') private readonly perguntaModel: Model<Perg
         await this.perguntaModel.findOneAndUpdate({ _id }, { $set: atualizarPerguntaDto }).exec();
     }
 
-    async getAllFunc(): Promise<Pergunta[]> {
+    async getAllPerg(): Promise<Pergunta[]> {
         return await this.perguntaModel.find().exec();
     }
     
-    async getFuncById(_id: string): Promise<Pergunta> {
+    async getPergById(_id: string): Promise<Pergunta> {
         const perguntaEncontrado = await this.perguntaModel.findOne({ _id }).exec();
         if(!perguntaEncontrado){
             throw new Error('Pergunta não encontrada');
@@ -46,7 +46,7 @@ constructor (@InjectModel('Pergunta') private readonly perguntaModel: Model<Perg
         return perguntaEncontrado;
     }
 
-    async deleteFunc(_id: string): Promise<any> {
+    async deletePerg(_id: string): Promise<any> {
 
         const perguntaEncontrado = await this.perguntaModel.findOne({ _id }).exec();
         if(!perguntaEncontrado){

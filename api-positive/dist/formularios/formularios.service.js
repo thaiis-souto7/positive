@@ -22,28 +22,31 @@ let FormulariosService = FormulariosService_1 = class FormulariosService {
         this.formularioModel = formularioModel;
         this.logger = new common_1.Logger(FormulariosService_1.name);
     }
-    async createFunc(criarFormularioDto) {
+    async countAllForm() {
+        return await this.formularioModel.countDocuments();
+    }
+    async createForm(criarFormularioDto) {
         const formularioCriado = await new this.formularioModel(criarFormularioDto);
         return formularioCriado.save();
     }
-    async updateFunc(_id, atualizarFormularioDto) {
+    async updateForm(_id, atualizarFormularioDto) {
         const formularioEncontrado = await this.formularioModel.findOne({ _id }).exec();
         if (!formularioEncontrado) {
             throw new common_1.NotFoundException('Formulário não encontrado');
         }
         await this.formularioModel.findOneAndUpdate({ _id }, { $set: atualizarFormularioDto }).exec();
     }
-    async getAllFunc() {
+    async getAllForm() {
         return await this.formularioModel.find().exec();
     }
-    async getFuncById(_id) {
+    async getFormById(_id) {
         const formularioEncontrado = await this.formularioModel.findOne({ _id }).exec();
         if (!formularioEncontrado) {
             throw new Error('Formulário não encontrado');
         }
         return formularioEncontrado;
     }
-    async deleteFunc(_id) {
+    async deleteForm(_id) {
         const formularioEncontrado = await this.formularioModel.findOne({ _id }).exec();
         if (!formularioEncontrado) {
             throw new Error('Formulário não encontrado');

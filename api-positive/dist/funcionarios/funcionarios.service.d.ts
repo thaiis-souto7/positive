@@ -6,6 +6,7 @@ export declare class FuncionariosService {
     private readonly funcionarioModel;
     private readonly logger;
     constructor(funcionarioModel: Model<Funcionario>);
+    countAllFunc(): Promise<number>;
     createFunc(criarFuncionarioDto: CriarFuncionarioDto): Promise<Funcionario>;
     updateFunc(_id: string, atualizarFuncionarioDto: AtualizarFuncionarioDto): Promise<void>;
     getAllFunc(): Promise<Funcionario[]>;

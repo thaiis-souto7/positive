@@ -5,9 +5,9 @@ import { Pergunta } from './interfaces/pergunta.interface';
 export declare class PerguntasController {
     private readonly pergunta;
     constructor(pergunta: PerguntasService);
-    createFunc(criarPerguntaDto: CriarPerguntaDto): Promise<Pergunta>;
-    updateFunc(atualizarPerguntaDto: AtualizarPerguntaDto, _id: string): Promise<void>;
-    getAllFunc(): Promise<Pergunta[]>;
-    getOneFunc(_id: string): Promise<Pergunta>;
-    deleteFunc(_id: string): Promise<void>;
+    createPerg(criarPerguntaDto: CriarPerguntaDto): Promise<Pergunta>;
+    updatePerg(atualizarPerguntaDto: AtualizarPerguntaDto, _id: string): Promise<void>;
+    getAllPerg(): Promise<Pergunta[]>;
+    getOnePerg(_id: string): Promise<Pergunta>;
+    deletePerg(_id: string): Promise<void>;
 }

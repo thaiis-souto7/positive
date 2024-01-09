@@ -13,32 +13,32 @@ export class FiliaisController {
 
     @Post()
     @UsePipes(ValidationPipe)
-    async createFunc(@Body() criarFilialDto: CriarFilialDto): Promise<Filial>{
-        return await this.filial.createFunc(criarFilialDto);
+    async createFilial(@Body() criarFilialDto: CriarFilialDto): Promise<Filial>{
+        return await this.filial.createFilial(criarFilialDto);
     }
 
     @Put('/:_id')
     @UsePipes(ValidationPipe)
-    async updateFunc( 
+    async updateFilial( 
         @Body() atualizarFilialDto: AtualizarFilialDto, 
         @Param('_id', FilialValidationParamsPipe) _id: string): Promise<void> {
         
-        await this.filial.updateFunc(_id, atualizarFilialDto);
+        await this.filial.updateFilial(_id, atualizarFilialDto);
     }
 
     @Get()          
-    async getAllFunc(): Promise<Filial[]> {
-        return await this.filial.getAllFunc();
+    async getAllFilial(): Promise<Filial[]> {
+        return await this.filial.getAllFilial();
     }
 
     @Get('/:_id')          
-    async getOneFunc(@Param('_id', FilialValidationParamsPipe) _id: string): Promise<Filial> {
-        return await this.filial.getFuncById(_id);
+    async getOneFilial(@Param('_id', FilialValidationParamsPipe) _id: string): Promise<Filial> {
+        return await this.filial.getFilialById(_id);
     }
 
     @Delete('/:_id')
-    async deleteFunc(@Param('_id', FilialValidationParamsPipe) _id: string): Promise<void> {
-        await this.filial.deleteFunc(_id);
+    async deleteFilial(@Param('_id', FilialValidationParamsPipe) _id: string): Promise<void> {
+        await this.filial.deleteFilial(_id);
     }
 
 }

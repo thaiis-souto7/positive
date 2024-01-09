@@ -13,32 +13,32 @@ export class LoginController {
 
     @Post()
     @UsePipes(ValidationPipe)
-    async createFunc(@Body() criarLoginDto: CriarLoginDto): Promise<Login>{
-        return await this.login.createFunc(criarLoginDto);
+    async createLogin(@Body() criarLoginDto: CriarLoginDto): Promise<Login>{
+        return await this.login.createLogin(criarLoginDto);
     }
 
     @Put('/:_id')
     @UsePipes(ValidationPipe)
-    async updateFunc( 
+    async updateLogin( 
         @Body() atualizarLoginDto: AtualizarLoginDto, 
         @Param('_id', LoginValidationParamsPipe) _id: string): Promise<void> {
         
-        await this.login.updateFunc(_id, atualizarLoginDto);
+        await this.login.updateLogin(_id, atualizarLoginDto);
     }
 
     @Get()          
-    async getAllFunc(): Promise<Login[]> {
-        return await this.login.getAllFunc();
+    async getAllLogin(): Promise<Login[]> {
+        return await this.login.getAllLogin();
     }
 
     @Get('/:_id')          
-    async getOneFunc(@Param('_id', LoginValidationParamsPipe) _id: string): Promise<Login> {
-        return await this.login.getFuncById(_id);
+    async getOneLogin(@Param('_id', LoginValidationParamsPipe) _id: string): Promise<Login> {
+        return await this.login.getLoginById(_id);
     }
 
     @Delete('/:_id')
-    async deleteFunc(@Param('_id', LoginValidationParamsPipe) _id: string): Promise<void> {
-        await this.login.deleteFunc(_id);
+    async deleteLogin(@Param('_id', LoginValidationParamsPipe) _id: string): Promise<void> {
+        await this.login.deleteLogin(_id);
     }
 
 }

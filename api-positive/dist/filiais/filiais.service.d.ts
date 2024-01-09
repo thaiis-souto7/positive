@@ -6,9 +6,9 @@ export declare class FiliaisService {
     private readonly filialModel;
     private readonly logger;
     constructor(filialModel: Model<Filial>);
-    createFunc(criarFilialDto: CriarFilialDto): Promise<Filial>;
-    updateFunc(_id: string, atualizarFilialDto: AtualizarFilialDto): Promise<void>;
-    getAllFunc(): Promise<Filial[]>;
-    getFuncById(_id: string): Promise<Filial>;
-    deleteFunc(_id: string): Promise<any>;
+    createFilial(criarFilialDto: CriarFilialDto): Promise<Filial>;
+    updateFilial(_id: string, atualizarFilialDto: AtualizarFilialDto): Promise<void>;
+    getAllFilial(): Promise<Filial[]>;
+    getFilialById(_id: string): Promise<Filial>;
+    deleteFilial(_id: string): Promise<any>;
 }
