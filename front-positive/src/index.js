@@ -19,7 +19,7 @@ root.render(
     <Switch>
       <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
       <Route path="/login" render={(props) => <Login {...props} />} />
-      <Redirect from="/" to="/login" /> {/* Altere para redirecionar para /login */}
+      <Redirect from="/" to="/login" />
     </Switch>
   </BrowserRouter>
 );

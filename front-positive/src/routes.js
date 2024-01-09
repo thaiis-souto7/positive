@@ -5,6 +5,7 @@ import Filial from "views/Filial.js";
 import Perguntas from "views/Perguntas.js";
 import Relatorios from "views/Relatorios.js";
 import Formulario from "views/Formularios.js";
+import Perfil from "views/Perfil.js";
 //import Typography from "views/Typography.js";
 //import Icons from "views/Icons.js";
 // import Maps from "views/Maps.js";
@@ -60,10 +61,10 @@ if (parseInt(localStorage.getItem('nivelAcesso')) === 1) {
 } else if(parseInt(localStorage.getItem('nivelAcesso')) === 2){
   dashboardRoutes = [
     {
-      path: "/dashboard",
-      name: "Dashboard",
-      icon: "nc-icon nc-chart-pie-35",
-      component: Dashboard,
+      path: "/perfil",
+      name: "Perfil",
+      icon: "nc-icon nc-circle-09",
+      component: Perfil,
       layout: "/admin"
     },
     {
