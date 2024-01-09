@@ -9,23 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AtualizarFormularioDto = void 0;
+exports.AtualizarRespostaDto = void 0;
 const class_validator_1 = require("class-validator");
-class AtualizarFormularioDto {
+class AtualizarRespostaDto {
 }
 __decorate([
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Object)
-], AtualizarFormularioDto.prototype, "descricao", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Object)
-], AtualizarFormularioDto.prototype, "responsavel", void 0);
+], AtualizarRespostaDto.prototype, "usuario", void 0);
 __decorate([
     (0, class_validator_1.IsArray)(),
     __metadata("design:type", Array)
-], AtualizarFormularioDto.prototype, "perguntas", void 0);
-exports.AtualizarFormularioDto = AtualizarFormularioDto;
-//# sourceMappingURL=atualizar-formulario.dto.js.map
+], AtualizarRespostaDto.prototype, "itens", void 0);
+__decorate([
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], AtualizarRespostaDto.prototype, "resolvido", void 0);
+exports.AtualizarRespostaDto = AtualizarRespostaDto;
+//# sourceMappingURL=atualizar-resposta.dto.js.map

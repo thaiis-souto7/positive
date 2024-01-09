@@ -5,11 +5,8 @@ const mongoose = require("mongoose");
 exports.FormularioSchema = new mongoose.Schema({
     descricao: { type: String, required: true },
     responsavel: { type: mongoose.Schema.Types.ObjectId, ref: 'Funcionario', required: true },
-    usuario: { type: mongoose.Schema.Types.ObjectId, ref: 'Funcionario' },
-    itens: [{
+    perguntas: [{
             pergunta: { type: mongoose.Schema.Types.ObjectId, ref: 'Pergunta', required: true },
-            resposta: String
         }],
-    resolvido: { type: Boolean, required: true, default: false },
 }, { timestamps: true, collection: 'formularios' });
 //# sourceMappingURL=formulario.schema.js.map

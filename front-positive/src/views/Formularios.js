@@ -5,6 +5,7 @@ import "../assets/css/form.css";
 
 function Formulario() {
   const [formularios, setFormularios] = useState([]);
+  const [respostas, setRespostas] = useState([]);
   const [perguntas, setPerguntas] = useState([]);
   const [funcionarios, setFuncionarios] = useState([]);
   const [nivelAcesso, setNivelAcesso] = useState(parseInt(localStorage.getItem('nivelAcesso')));
@@ -27,14 +28,29 @@ function Formulario() {
     loadFormularios();
     loadPerguntas();
     loadFuncionarios();
+    loadRespostas();
   }, []);
 
   const loadFormularios = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/formularios");
-      setFormularios(res.data);
+      const resFormularios = await axios.get("http://localhost:8080/api/formularios");
+      const resRespostas = await axios.get("http://localhost:8080/api/respostas");
+      const userId = localStorage.getItem('user_id');
+  
+      const formulariosComRespostas = resFormularios.data.map(formulario => {
+        // Verifique se existe uma resposta que corresponda ao formulário e ao usuário atual
+        const respostaDoUsuario = resRespostas.data.find(resp => 
+          resp.formulario_id === formulario._id && resp.usuario === userId
+        );
+        return {
+          ...formulario,
+          resolvido: !!respostaDoUsuario
+        };
+      });
+  
+      setFormularios(formulariosComRespostas);
     } catch (error) {
-      console.error("Erro ao carregar formulários", error);
+      console.error("Erro ao carregar formulários e respostas", error);
     }
   };
 
@@ -44,6 +60,15 @@ function Formulario() {
       setFuncionarios(res.data);
     } catch (error) {
       console.error("Erro ao carregar formulários", error);
+    }
+  };
+
+  const loadRespostas = async () => {
+    try {
+      const res = await axios.get("http://localhost:8080/api/respostas");
+      setRespostas(res.data);
+    } catch (error) {
+      console.error("Erro ao carregar respostas", error);
     }
   };
 
@@ -87,17 +112,14 @@ function Formulario() {
   const handleCreate = async () => {
     try {
       // Estrutura os itens do formulário com as perguntas selecionadas
-      const itens = formData.perguntasSelecionadas.map(perguntaId => ({
+      const perguntas = formData.perguntasSelecionadas.map(perguntaId => ({
         pergunta: perguntaId,
-        resposta: null  // Inicializa a resposta como null
       }));
   
       const dataToSend = {
         descricao: formData.descricao,
         responsavel: localStorage.getItem('user_id'),
-        usuario: localStorage.getItem('user_id'),  // Aqui eu assumo que o usuário é o mesmo que o responsável
-        itens,  // Estrutura correta para itens
-        resolvido: false
+        perguntas,  
       };
   
       const response = await axios.post("http://localhost:8080/api/formularios", dataToSend);
@@ -110,15 +132,13 @@ function Formulario() {
 
   const handleEdit = (formularioId) => {
 
-    const itens = formData.perguntasSelecionadas.map(perguntaId => ({
+    const perguntas = formData.perguntasSelecionadas.map(perguntaId => ({
         pergunta: perguntaId,
-        resposta: null  // Inicializa a resposta como null
-      }));
+    }));
 
     const dataToSend = {
-        ...formData,
-        resolvido: false, 
-        itens
+        ...formData, 
+        perguntas
         };
 
     axios.put(`http://localhost:8080/api/formularios/${formularioId}`, dataToSend)
@@ -153,16 +173,87 @@ function Formulario() {
       setResponseFormData({
         _id: formularioParaResponder._id,
         descricao: formularioParaResponder.descricao,
-        respostas: formularioParaResponder.itens.map(item => ({ perguntaId: item.pergunta, resposta: item.resposta }))
+        respostas: formularioParaResponder.perguntas.map(item => ({ perguntaId: item.pergunta }))
       });
       setShowResponseModal(true);
     }
   };
 
-  const handleSaveResponse = () => {
-    // Lógica para enviar as respostas para o backend
-    console.log("Respostas:", responseFormData);
-    setShowResponseModal(false);
+  const openViewResponseModal = async (formularioId) => {
+    try {
+      const userId = localStorage.getItem('user_id');
+      const respostaCorrespondente = respostas.find(resp => resp.formulario_id === formularioId && resp.usuario === userId);
+      if (!respostaCorrespondente) {
+        console.error("Resposta não encontrada");
+        return;
+      }
+  
+      const respostaId = respostaCorrespondente._id;
+      const res = await axios.get(`http://localhost:8080/api/respostas/${respostaId}`);
+      
+      setResponseFormData({
+        _id: respostaId, // Aqui incluímos o _id da resposta
+        form_id: formularioId,
+        descricao: res.data.descricao,
+        resolvido: res.data.resolvido,
+        respostas: res.data.itens.map(item => ({
+          perguntaId: item.pergunta,
+          resposta: item.resposta,
+        }))
+      });
+      setShowResponseModal(true);
+    } catch (error) {
+      console.error("Erro ao carregar respostas: " + error.message);
+      showError("Erro ao carregar respostas: " + error.message);
+    }
+  };    
+
+  const handleSaveResponse = async (formularioId) => {
+  
+    try {
+      const itens = responseFormData.respostas.map(resposta => ({
+        pergunta: resposta.perguntaId,
+        resposta: resposta.resposta
+      }));
+  
+      const dataToSend = {
+        formulario_id: formularioId,
+        usuario: localStorage.getItem('user_id'),
+        itens,
+        resolvido: true
+      };
+  
+      const response = await axios.post(`http://localhost:8080/api/respostas`, dataToSend);
+      showSucess("Respostas salvas com sucesso!");
+      setShowResponseModal(false);
+      window.location.reload()
+    } catch (error) {
+      showError("Erro ao salvar respostas: " + error.message);
+    }
+  };
+
+  const handleEditResponse = async (perguntaId, formId) => {
+  
+    try {
+      const itens = responseFormData.respostas.map(resposta => ({
+        pergunta: resposta.perguntaId,
+        resposta: resposta.resposta
+      }));
+  
+      const dataToSend = {
+        formulario_id: formId,
+        usuario: localStorage.getItem('user_id'),
+        itens,
+        resolvido: true
+      };
+  
+      const response = await axios.put(`http://localhost:8080/api/respostas/${perguntaId}`, dataToSend);
+      showSucess("Respostas atualizadas com sucesso!");
+      setShowResponseModal(false);
+      window.location.reload()
+    } catch (error) {
+      showError("Erro ao salvar respostas: " + error.message);
+    }
   };
 
   const handleResponseChange = (index, newValue) => {
@@ -220,7 +311,7 @@ return (
                   <thead>
                     <tr>
                       <th>Descrição</th>
-                      <th>Responsável</th>
+                      {parseInt(localStorage.getItem('nivelAcesso')) === 1 ? <th>Responsável</th> : <th>Usuário</th>}
                       {parseInt(localStorage.getItem('nivelAcesso')) === 2 && <th>Resolvido</th>}
                     </tr>
                   </thead>
@@ -237,7 +328,7 @@ return (
                                     _id: formularioParaEditar._id,
                                     descricao: formularioParaEditar.descricao,
                                     responsavel: formularioParaEditar.responsavel,
-                                    perguntasSelecionadas: (formularioParaEditar.itens ?? []).map(item => item.pergunta)
+                                    perguntasSelecionadas: (formularioParaEditar.perguntas ?? []).map(item => item.pergunta)
                                   });
                                 }
                                 setShowModal(true);
@@ -247,10 +338,17 @@ return (
                                 <Button hidden={nivelAcesso !== 1} variant="danger" onClick={() => handleDelete(formulario._id)}>
                                     Excluir
                                 </Button>
-                                <Button hidden={nivelAcesso === 1} variant="info" onClick={() => openResponseModal(formulario._id)}>
+                                {nivelAcesso !== 1 && !formulario.resolvido ? (
+                                  <Button variant="info" onClick={() => openResponseModal(formulario._id)}>
                                     Responder
-                                </Button>{" "}
-                            </td>
+                                  </Button>
+                                ) : null}
+                                {formulario._id && formulario.resolvido ? (
+                                  <Button variant="primary" onClick={() => openViewResponseModal(formulario._id)}>
+                                    Editar Respostas
+                                  </Button>
+                                ) : null}
+                              </td>
                         </tr>))}
                   </tbody>
                 </Table>
@@ -369,11 +467,18 @@ return (
         <Button variant="secondary" onClick={() => setShowResponseModal(false)}>
           Fechar
         </Button>
-        <Button variant="success" onClick={handleSaveResponse}>
-          Salvar Respostas
-        </Button>
+        {!responseFormData.resolvido ? (
+            <Button variant="success" onClick={() => handleSaveResponse(responseFormData._id)}>
+            Salvar Respostas
+          </Button>
+          ) : (
+            <Button variant="info" onClick={() => handleEditResponse(responseFormData._id, responseFormData.form_id)}>
+              Editar Respostas
+            </Button>
+          )}
+        
       </Modal.Footer>
-    </Modal>
+      </Modal>
       {/* Modal de Erro */}
       <Modal show={showErrorModal} onHide={hideError}>
         <Modal.Header closeButton>

@@ -1,16 +1,20 @@
 import { IsArray, IsBoolean, IsDate, IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { Formulario } from "src/formularios/interfaces/formulario.interface";
 import { Funcionario } from "src/funcionarios/interfaces/funcionario.interface";
 import { Pergunta } from "src/perguntas/interfaces/pergunta.interface";   
 
-export class AtualizarFormularioDto{
+export class AtualizarRespostaDto{
 
-    @IsString() @IsNotEmpty()
-    descricao: Funcionario;
-
-    @IsString() @IsNotEmpty()
-    responsavel: Funcionario;
+    @IsString() 
+    usuario: Funcionario;
 
     @IsArray()
-    perguntas: Array<Pergunta>;
+    itens: Array<{
+        pergunta: Pergunta;
+        resposta: string;
+    }>;
+
+    @IsBoolean()
+    resolvido: boolean;
 
 }
