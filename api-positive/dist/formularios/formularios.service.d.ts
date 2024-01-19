@@ -7,6 +7,8 @@ export declare class FormulariosService {
     private readonly logger;
     constructor(formularioModel: Model<Formulario>);
     countAllForm(): Promise<number>;
+    findForms(): Promise<Formulario[]>;
+    findFormSite(): Promise<Formulario[]>;
     createForm(criarFormularioDto: CriarFormularioDto): Promise<Formulario>;
     updateForm(_id: string, atualizarFormularioDto: AtualizarFormularioDto): Promise<void>;
     getAllForm(): Promise<Formulario[]>;

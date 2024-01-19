@@ -6,6 +6,10 @@ export declare class RespostasController {
     private readonly resposta;
     constructor(resposta: RespostaService);
     getCountResp(): Promise<number>;
+    getAverage(): Promise<number>;
+    getAverageSite(): Promise<number>;
+    getMonthlyAverages(): Promise<any[]>;
+    getMonthlyAverageSite(): Promise<any[]>;
     createResp(criarRespostaDto: CriarRespostaDto): Promise<Resposta>;
     updateResp(atualizarRespostaDto: AtualizarRespostaDto, _id: string): Promise<void>;
     getAllResp(): Promise<Resposta[]>;

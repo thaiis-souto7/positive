@@ -12,13 +12,17 @@ const mongoose_1 = require("@nestjs/mongoose");
 const respostas_controller_1 = require("./respostas.controller");
 const respostas_service_1 = require("./respostas.service");
 const resposta_schema_1 = require("./interfaces/resposta.schema");
+const formularios_module_1 = require("../formularios/formularios.module");
 let RespostasModule = class RespostasModule {
 };
 RespostasModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'Resposta', schema: resposta_schema_1.RespostaSchema }])],
+        imports: [
+            mongoose_1.MongooseModule.forFeature([{ name: 'Resposta', schema: resposta_schema_1.RespostaSchema }]),
+            formularios_module_1.FormulariosModule
+        ],
         controllers: [respostas_controller_1.RespostasController],
-        providers: [respostas_service_1.RespostaService]
+        providers: [respostas_service_1.RespostaService],
     })
 ], RespostasModule);
 exports.RespostasModule = RespostasModule;

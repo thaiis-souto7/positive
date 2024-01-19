@@ -25,6 +25,12 @@ let FormulariosService = FormulariosService_1 = class FormulariosService {
     async countAllForm() {
         return await this.formularioModel.countDocuments();
     }
+    async findForms() {
+        return this.formularioModel.find({ descricao: /bem[- ]estar/i }).exec();
+    }
+    async findFormSite() {
+        return this.formularioModel.find({ descricao: /site/i }).exec();
+    }
     async createForm(criarFormularioDto) {
         const formularioCriado = await new this.formularioModel(criarFormularioDto);
         return formularioCriado.save();

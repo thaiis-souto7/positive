@@ -6,6 +6,8 @@ export declare class FormulariosController {
     private readonly formulario;
     constructor(formulario: FormulariosService);
     getCountForm(): Promise<number>;
+    getForms(): Promise<Formulario[]>;
+    getFormSite(): Promise<Formulario[]>;
     createForm(criarFormularioDto: CriarFormularioDto): Promise<Formulario>;
     updateForm(atualizarFormularioDto: AtualizarFormularioDto, _id: string): Promise<void>;
     getAllForm(): Promise<Formulario[]>;

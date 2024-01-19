@@ -16,6 +16,26 @@ export class RespostasController {
         return await this.resposta.countAllResp();
     }
 
+    @Get('/average')
+    async getAverage(): Promise<number> {
+        return await this.resposta.calculateAverage();
+    }
+
+    @Get('/averageSite')
+    async getAverageSite(): Promise<number> {
+        return await this.resposta.calculateAverageSite();
+    }
+
+    @Get('/average/monthly')
+    async getMonthlyAverages() {
+        return await this.resposta.calculateMonthlyAverage();
+    }
+
+    @Get('/average/monthly/site')
+    async getMonthlyAverageSite() {
+        return await this.resposta.calculateMonthlyAverageSite();
+    }
+
     @Post()
     @UsePipes(ValidationPipe)
     async createResp(@Body() criarRespostaDto: CriarRespostaDto): Promise<Resposta>{

@@ -16,6 +16,14 @@ constructor (@InjectModel('Formulario') private readonly formularioModel: Model<
         return await this.formularioModel.countDocuments();
     }
 
+    async findForms(): Promise<Formulario[]> {
+        return this.formularioModel.find({ descricao: /bem[- ]estar/i }).exec();
+    }
+
+    async findFormSite(): Promise<Formulario[]> {
+        return this.formularioModel.find({ descricao: /site/i }).exec();
+    }
+
     async createForm(criarFormularioDto: CriarFormularioDto): Promise<Formulario> {
         const formularioCriado = await new this.formularioModel(criarFormularioDto);
         return formularioCriado.save();

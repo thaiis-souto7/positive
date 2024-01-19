@@ -25,6 +25,12 @@ let FormulariosController = class FormulariosController {
     async getCountForm() {
         return await this.formulario.countAllForm();
     }
+    async getForms() {
+        return await this.formulario.findForms();
+    }
+    async getFormSite() {
+        return await this.formulario.findFormSite();
+    }
     async createForm(criarFormularioDto) {
         return await this.formulario.createForm(criarFormularioDto);
     }
@@ -47,6 +53,18 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], FormulariosController.prototype, "getCountForm", null);
+__decorate([
+    (0, common_1.Get)('/find'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], FormulariosController.prototype, "getForms", null);
+__decorate([
+    (0, common_1.Get)('/findSite'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], FormulariosController.prototype, "getFormSite", null);
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.UsePipes)(common_1.ValidationPipe),

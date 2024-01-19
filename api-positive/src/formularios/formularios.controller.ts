@@ -16,6 +16,16 @@ export class FormulariosController {
         return await this.formulario.countAllForm();
     }
 
+    @Get('/find')
+    async getForms(): Promise<Formulario[]> {
+        return await this.formulario.findForms();
+    }
+
+    @Get('/findSite')
+    async getFormSite(): Promise<Formulario[]> {
+        return await this.formulario.findFormSite();
+    }
+
     @Post()
     @UsePipes(ValidationPipe)
     async createForm(@Body() criarFormularioDto: CriarFormularioDto): Promise<Formulario>{

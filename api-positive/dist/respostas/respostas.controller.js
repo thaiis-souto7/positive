@@ -25,6 +25,18 @@ let RespostasController = class RespostasController {
     async getCountResp() {
         return await this.resposta.countAllResp();
     }
+    async getAverage() {
+        return await this.resposta.calculateAverage();
+    }
+    async getAverageSite() {
+        return await this.resposta.calculateAverageSite();
+    }
+    async getMonthlyAverages() {
+        return await this.resposta.calculateMonthlyAverage();
+    }
+    async getMonthlyAverageSite() {
+        return await this.resposta.calculateMonthlyAverageSite();
+    }
     async createResp(criarRespostaDto) {
         return await this.resposta.createResp(criarRespostaDto);
     }
@@ -47,6 +59,30 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], RespostasController.prototype, "getCountResp", null);
+__decorate([
+    (0, common_1.Get)('/average'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], RespostasController.prototype, "getAverage", null);
+__decorate([
+    (0, common_1.Get)('/averageSite'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], RespostasController.prototype, "getAverageSite", null);
+__decorate([
+    (0, common_1.Get)('/average/monthly'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], RespostasController.prototype, "getMonthlyAverages", null);
+__decorate([
+    (0, common_1.Get)('/average/monthly/site'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], RespostasController.prototype, "getMonthlyAverageSite", null);
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.UsePipes)(common_1.ValidationPipe),

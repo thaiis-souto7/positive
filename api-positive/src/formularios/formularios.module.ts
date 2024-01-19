@@ -7,6 +7,7 @@ import { FormularioSchema } from './interfaces/formulario.schema';
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'Formulario', schema: FormularioSchema }])],
   controllers: [FormulariosController],
+  exports: [FormulariosService],
   providers: [FormulariosService]
 })
 export class FormulariosModule {}
