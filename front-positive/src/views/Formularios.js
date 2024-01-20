@@ -213,7 +213,7 @@ function Formulario() {
     try {
       const itens = responseFormData.respostas.map(resposta => ({
         pergunta: resposta.perguntaId,
-        resposta: resposta.resposta
+        resposta: resposta.resposta ? resposta.resposta : 0
       }));
   
       const dataToSend = {
@@ -237,7 +237,7 @@ function Formulario() {
     try {
       const itens = responseFormData.respostas.map(resposta => ({
         pergunta: resposta.perguntaId,
-        resposta: resposta.resposta
+        resposta: resposta.resposta ? resposta.resposta : 0
       }));
   
       const dataToSend = {
@@ -406,7 +406,7 @@ return (
                         name={`checkbox-${pergunta._id}`}
                         type="checkbox"
                         id={`checkbox-${pergunta._id}`}
-                        className="me-2" // Bootstrap class for margin-right
+                        className="me-2" 
                         onChange={() => handlePerguntaChange(pergunta._id)}
                         checked={formData.perguntasSelecionadas.includes(pergunta._id)}
                     />

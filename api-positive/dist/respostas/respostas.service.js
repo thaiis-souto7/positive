@@ -17,13 +17,95 @@ exports.RespostaService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const formularios_service_1 = require("../formularios/formularios.service");
 let RespostaService = RespostaService_1 = class RespostaService {
-    constructor(respostaModel) {
+    constructor(respostaModel, formularioService) {
         this.respostaModel = respostaModel;
+        this.formularioService = formularioService;
         this.logger = new common_1.Logger(RespostaService_1.name);
     }
     async countAllResp() {
         return await this.respostaModel.countDocuments();
+    }
+    async calculateAverage() {
+        const forms = await this.formularioService.findForms();
+        const formIds = forms.map((form) => form._id);
+        const responses = await this.respostaModel.find({
+            formulario_id: { $in: formIds },
+        });
+        let totalSum = 0;
+        let totalCount = 0;
+        responses.forEach((response) => {
+            response.itens.forEach((item) => {
+                totalSum += Number(item.resposta);
+                totalCount += 1;
+            });
+        });
+        const average = totalSum / totalCount;
+        return average + 1;
+    }
+    async calculateAverageSite() {
+        const forms = await this.formularioService.findFormSite();
+        const formIds = forms.map((form) => form._id);
+        const responses = await this.respostaModel.find({
+            formulario_id: { $in: formIds },
+        });
+        let totalSum = 0;
+        let totalCount = 0;
+        responses.forEach((response) => {
+            response.itens.forEach((item) => {
+                totalSum += Number(item.resposta);
+                totalCount += 1;
+            });
+        });
+        const average = totalSum / totalCount;
+        return average + 1;
+    }
+    async calculateMonthlyAverage() {
+        const forms = await this.formularioService.findForms();
+        const formIds = forms.map((form) => form._id);
+        const monthlyAverages = await this.respostaModel.aggregate([
+            { $match: { formulario_id: { $in: formIds } } },
+            { $unwind: "$itens" },
+            {
+                $group: {
+                    _id: { $month: "$createdAt" },
+                    totalSum: { $sum: { $toDecimal: "$itens.resposta" } },
+                    totalCount: { $sum: 1 }
+                }
+            },
+            {
+                $project: {
+                    month: "$_id",
+                    average: { $add: [{ $divide: ["$totalSum", "$totalCount"] }, 1] }
+                }
+            },
+            { $sort: { month: 1 } }
+        ]);
+        return monthlyAverages;
+    }
+    async calculateMonthlyAverageSite() {
+        const forms = await this.formularioService.findFormSite();
+        const formIds = forms.map((form) => form._id);
+        const monthlyAverages = await this.respostaModel.aggregate([
+            { $match: { formulario_id: { $in: formIds } } },
+            { $unwind: "$itens" },
+            {
+                $group: {
+                    _id: { $month: "$createdAt" },
+                    totalSum: { $sum: { $toDecimal: "$itens.resposta" } },
+                    totalCount: { $sum: 1 }
+                }
+            },
+            {
+                $project: {
+                    month: "$_id",
+                    average: { $add: [{ $divide: ["$totalSum", "$totalCount"] }, 1] }
+                }
+            },
+            { $sort: { month: 1 } }
+        ]);
+        return monthlyAverages;
     }
     async createResp(criarRespostaDto) {
         const respostaCriado = await new this.respostaModel(criarRespostaDto);
@@ -57,7 +139,8 @@ let RespostaService = RespostaService_1 = class RespostaService {
 RespostaService = RespostaService_1 = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)('Resposta')),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __metadata("design:paramtypes", [mongoose_2.Model,
+        formularios_service_1.FormulariosService])
 ], RespostaService);
 exports.RespostaService = RespostaService;
 //# sourceMappingURL=respostas.service.js.map

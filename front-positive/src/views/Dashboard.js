@@ -21,11 +21,19 @@ function Dashboard() {
   const [countForms, setCountForms] = useState([]);
   const [countResps, setCountResps] = useState([]);
   const [countFuncs, setCountFuncs] = useState([]);
+  const [bemEstarAtual, setBemEstarAtual] = useState(0);
+  const [siteAtual, setSiteAtual] = useState(0);
+  const [monthlyAverages, setMonthlyAverages] = useState([]);
+  const [monthlyAverageSite, setMonthlyAverageSite] = useState([]);
 
   useEffect(() => {
     loadFormularios();
     loadFuncionarios();
     loadRespostas();
+    loadBemEstarAtual();
+    loadSatifaçãoSite();
+    loadMonthlyAverages();
+    loadMonthlyAverageSite();
   }, []);
 
 
@@ -56,12 +64,72 @@ function Dashboard() {
     }
   };
 
+  const loadBemEstarAtual = async () => {
+    try {
+      const res = await axios.get("http://localhost:8080/api/respostas/average");
+      setBemEstarAtual(res.data);
+    } catch (error) {
+      console.error("Erro ao carregar a média de bem-estar", error);
+    }
+  };
+
+  const loadSatifaçãoSite = async () => {
+    try {
+      const res = await axios.get("http://localhost:8080/api/respostas/averageSite");
+      setSiteAtual(res.data);
+    } catch (error) {
+      console.error("Erro ao carregar a média de satisfação do site", error);
+    }
+  };
+
+  const loadMonthlyAverages = async () => {
+    try {
+      const res = await axios.get("http://localhost:8080/api/respostas/average/monthly");
+      setMonthlyAverages(res.data);
+    } catch (error) {
+      console.error("Erro ao carregar as médias mensais", error);
+    }
+  };
+
+  const loadMonthlyAverageSite = async () => {
+    try {
+      const res = await axios.get("http://localhost:8080/api/respostas/average/monthly/site");
+      setMonthlyAverageSite(res.data);
+    } catch (error) {
+      console.error("Erro ao carregar as médias mensais", error);
+    }
+  };
+
+  // Mapeamento de número do mês para nome do mês
+  const monthNames = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
+
+  // Inicializa um array de valores com 0 para cada mês
+  const monthlyValues = new Array(12).fill(0);
+  const monthlySite = new Array(12).fill(0);
+
+  // Preenche os valores mensais com os dados de 'monthlyAverages'
+  monthlyAverages.forEach(avg => {
+    const monthIndex = avg.month - 1; // Ajusta porque os meses começam em 1, mas os índices de array em 0
+    monthlyValues[monthIndex] = Number(avg.average.$numberDecimal); // Ajusta o valor para um número
+  });
+
+  monthlyAverageSite.forEach(avg => {
+    const monthIndex = avg.month - 1; // Ajusta porque os meses começam em 1, mas os índices de array em 0
+    monthlySite[monthIndex] = Number(avg.average.$numberDecimal); // Ajusta o valor para um número
+  });
+
+  // Estrutura de dados para o gráfico
+  const chartData = {
+    labels: monthNames,
+    series: [monthlyValues, monthlySite]
+  };
+
 
   return (
     <>
       <Container fluid>
         <Row>
-          <Col lg="3" sm="6">
+          <Col lg="4" sm="6">
             <Card className="card-stats">
               <Card.Body>
                 <Row>
@@ -85,7 +153,7 @@ function Dashboard() {
               </Card.Footer> */}
             </Card>
           </Col>
-          <Col lg="3" sm="6">
+          <Col lg="4" sm="6">
             <Card className="card-stats">
               <Card.Body>
                 <Row>
@@ -111,7 +179,7 @@ function Dashboard() {
               </Card.Footer> */}
             </Card>
           </Col>
-          <Col lg="3" sm="6">
+          <Col lg="4" sm="6">
             <Card className="card-stats">
               <Card.Body>
                 <Row>
@@ -123,7 +191,7 @@ function Dashboard() {
                   <Col xs="7">
                     <div className="numbers">
                       <p className="card-category">Forms Respondidos</p>
-                      <Card.Title as="h4"> {countResps} </Card.Title>
+                      <Card.Title as="h4"> {countResps} / {countFuncs*countForms} </Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -137,7 +205,7 @@ function Dashboard() {
               </Card.Footer> */}
             </Card>
           </Col>
-          <Col lg="3" sm="6">
+          <Col lg="4" sm="6">
             <Card className="card-stats">
               <Card.Body>
                 <Row>
@@ -148,8 +216,34 @@ function Dashboard() {
                   </Col>
                   <Col xs="7">
                     <div className="numbers">
-                      <p className="card-category">Satisfação Atual</p>
-                      <Card.Title as="h4">+45K</Card.Title>
+                      <p className="card-category">Bem-Estar</p>
+                      <Card.Title as="h4"> { bemEstarAtual ? bemEstarAtual.toFixed(2) : 0 } </Card.Title>
+                    </div>
+                  </Col>
+                </Row>
+              </Card.Body>
+              {/* <Card.Footer>
+                <hr></hr>
+                <div className="stats">
+                  <i className="fas fa-redo mr-1"></i>
+                  Update now
+                </div>
+              </Card.Footer> */}
+            </Card>
+          </Col>
+          <Col lg="4" sm="6">
+            <Card className="card-stats">
+              <Card.Body>
+                <Row>
+                  <Col xs="5">
+                    <div className="icon-big text-center icon-warning">
+                      <i className="nc-icon nc-tv-2 text-info"></i>
+                    </div>
+                  </Col>
+                  <Col xs="7">
+                    <div className="numbers">
+                      <p className="card-category">Satisfação - Site</p>
+                      <Card.Title as="h4">{ siteAtual ? siteAtual.toFixed(2) : 0}</Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -175,25 +269,32 @@ function Dashboard() {
                 <div className="ct-chart" id="chartHours">
                   <ChartistGraph
                     data={{
-                      labels: [
-                        "JAN",
-                        "FEV",
-                        "MAR",
-                        "ABR",
-                        "MAI",
-                        "JUN",
-                        "JUL",
-                        "AGO",
-                        "SET",
-                        "OUT",
-                        "NOV",
-                        "DEZ",
-                      ],
-                      series: [
-                        [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
-                        [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2],
-                      ],
+                      labels: chartData.labels,
+                      series: [[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+                                chartData.series[0],
+                                chartData.series[1]
+                              ]
                     }}
+                    //   {{labels: [
+                    //     "JAN",
+                    //     "FEV",
+                    //     "MAR",
+                    //     "ABR",
+                    //     "MAI",
+                    //     "JUN",
+                    //     "JUL",
+                    //     "AGO",
+                    //     "SET",
+                    //     "OUT",
+                    //     "NOV",
+                    //     "DEZ",
+                    //   ],
+                    //   series: [
+                    //     [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+                    //     [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2],
+                    //     [5, 1, 3, 2, 1, 5, 3, 2, 4, 1, 5, 3],
+                    //   ],
+                    // }}
                     type="Line"
                     options={{
                       low: 0,
@@ -232,7 +333,10 @@ function Dashboard() {
                   Margem Adequada 
                   <br></br>
                   <i className="fas fa-circle text-danger"></i>
-                  Satisfação 
+                  Bem-Estar  
+                  <br></br>
+                  <i className="fas fa-circle text-warning"></i>
+                  Satisfação do Site
                 </div>
               </Card.Footer>
             </Card>

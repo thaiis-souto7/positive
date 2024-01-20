@@ -18,6 +18,7 @@ FormulariosModule = __decorate([
     (0, common_1.Module)({
         imports: [mongoose_1.MongooseModule.forFeature([{ name: 'Formulario', schema: formulario_schema_1.FormularioSchema }])],
         controllers: [formularios_controller_1.FormulariosController],
+        exports: [formularios_service_1.FormulariosService],
         providers: [formularios_service_1.FormulariosService]
     })
 ], FormulariosModule);

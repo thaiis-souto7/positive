@@ -36,13 +36,13 @@ if (parseInt(localStorage.getItem('nivelAcesso')) === 1) {
       component: Perguntas,
       layout: "/admin"
     },
-    {
-      path: "/filial",
-      name: "Filial",
-      icon: "nc-icon nc-bank",
-      component: Filial,
-      layout: "/admin"
-    },
+    // {
+    //   path: "/filial",
+    //   name: "Filial",
+    //   icon: "nc-icon nc-bank",
+    //   component: Filial,
+    //   layout: "/admin"
+    // },
     {
       path: "/formulario",
       name: "Formulário",

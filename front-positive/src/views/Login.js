@@ -45,9 +45,13 @@ function Login() {
                 localStorage.setItem('matricula', loginData.matricula);
                 localStorage.setItem('nivelAcesso', validUser.nivelAcesso);
                 localStorage.setItem('logout', 'false');
-    
-                window.location.href = "/admin/perfil";
-                // history.push("/admin/dashboard");
+                
+                if (validUser.nivelAcesso === 1) {
+                    window.location.href = "/admin/dashboard";
+                } else if (validUser.nivelAcesso === 2) {
+                    window.location.href = "/admin/perfil";
+                }
+                
             } else {
                 throw new Error("Usuário ou senha incorretos");
             }
