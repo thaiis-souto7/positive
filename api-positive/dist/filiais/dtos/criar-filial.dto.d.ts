@@ -1,6 +1,5 @@
 export declare class CriarFilialDto {
     readonly cnpj: string;
-    matriz: boolean;
     nome: string;
     cep: string;
     rua: string;
@@ -13,5 +12,4 @@ export declare class CriarFilialDto {
     responsavel: string;
     segmento: string;
     numFunc: number;
-    fatAnual: number;
 }

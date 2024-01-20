@@ -14,10 +14,6 @@ const class_validator_1 = require("class-validator");
 class AtualizarFilialDto {
 }
 __decorate([
-    (0, class_validator_1.IsBoolean)(),
-    __metadata("design:type", Boolean)
-], AtualizarFilialDto.prototype, "matriz", void 0);
-__decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], AtualizarFilialDto.prototype, "nome", void 0);
@@ -61,9 +57,5 @@ __decorate([
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], AtualizarFilialDto.prototype, "numFunc", void 0);
-__decorate([
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
-], AtualizarFilialDto.prototype, "fatAnual", void 0);
 exports.AtualizarFilialDto = AtualizarFilialDto;
 //# sourceMappingURL=atualizar-filial.dto.js.map

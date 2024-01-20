@@ -5,9 +5,9 @@ import { Filial } from './interfaces/filial.interface';
 export declare class FiliaisController {
     private readonly filial;
     constructor(filial: FiliaisService);
-    createFunc(criarFilialDto: CriarFilialDto): Promise<Filial>;
-    updateFunc(atualizarFilialDto: AtualizarFilialDto, _id: string): Promise<void>;
-    getAllFunc(): Promise<Filial[]>;
-    getOneFunc(_id: string): Promise<Filial>;
-    deleteFunc(_id: string): Promise<void>;
+    createFilial(criarFilialDto: CriarFilialDto): Promise<Filial>;
+    updateFilial(atualizarFilialDto: AtualizarFilialDto, _id: string): Promise<void>;
+    getAllFilial(): Promise<Filial[]>;
+    getOneFilial(_id: string): Promise<Filial>;
+    deleteFilial(_id: string): Promise<void>;
 }

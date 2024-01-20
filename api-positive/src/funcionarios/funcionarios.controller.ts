@@ -11,6 +11,11 @@ export class FuncionariosController {
 
     constructor(private readonly funcionario : FuncionariosService) {}
 
+    @Get('/count')
+    async getCountFunc(): Promise<number> {
+        return await this.funcionario.countAllFunc();
+    }
+
     @Post()
     @UsePipes(ValidationPipe)
     async createFunc(@Body() criarFuncionarioDto: CriarFuncionarioDto): Promise<Funcionario>{

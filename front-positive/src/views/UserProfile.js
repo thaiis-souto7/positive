@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Modal, Button, Card, Form, Container, Row, Col } from "react-bootstrap";
+import { Modal, Button, Card, Form, Container, Row, Col } from "react-bootstrap"; 
 
 function UserProfile() {
   const [funcionarios, setFuncionarios] = useState([]);
@@ -40,14 +40,22 @@ function UserProfile() {
     return '';
   }
 
-  function formatDateForInput(isoDate) {
+  function formatDateForInput(isoDate, id) {
     if (!isoDate) return '';
-  
-    const date = new Date(isoDate);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate() +1).padStart(2, '0');
-    return `${year}-${month}-${day}`;
+
+    if(id === 'edit'){
+      const date = new Date(isoDate);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate() + 1).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    } else {
+      const date = new Date(isoDate);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
   }
 
   const loadFuncionarios = async () => {
@@ -96,9 +104,9 @@ function UserProfile() {
     const dataToSend = {
       ...formData,
       idade: parseInt(formData.idade, 10),  // Converte para número
-      // cargaHoraria: parseInt(formData.cargaHoraria, 10),
-      // nivelAcesso: parseInt(formData.nivelAcesso, 10),
-      dataAdmissao: formatDateToISO(formData.dataAdmissao)
+      cargaHoraria: parseInt(formData.cargaHoraria, 10),
+      nivelAcesso: parseInt(formData.nivelAcesso, 10),
+      dataAdmissao: formatDateForInput(formData.dataAdmissao, 'edit')
       };
 
     axios.put(`http://localhost:8080/api/funcionarios/${funcionarioId}`, dataToSend)
@@ -170,7 +178,7 @@ function UserProfile() {
           <Col md="12">
             <Card>
               <Card.Header>
-                <Card.Title as="h4">Editar Perfil</Card.Title>
+                <Card.Title as="h4">Editar Funcionário</Card.Title>
               </Card.Header>
               <Card.Body>
                 {/* Campo de pesquisa */}
@@ -210,7 +218,7 @@ function UserProfile() {
                             onClick={() => {
                               const funcionarioEdit = {
                                 ...funcionario,
-                                dataAdmissao: formatDateForInput(funcionario.dataAdmissao)
+                                dataAdmissao: formatDateForInput(funcionario.dataAdmissao, 'edit')
                               };
                               setFormData(funcionarioEdit);
                               setShowModal(true);

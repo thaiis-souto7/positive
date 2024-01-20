@@ -5,18 +5,12 @@ import { Pergunta } from "src/perguntas/interfaces/pergunta.interface";
 export class CriarFormularioDto{
     
     @IsString() @IsNotEmpty()
-    responsavel: Funcionario;
+    descricao: Funcionario;
 
     @IsString() @IsNotEmpty()
-    usuario: Funcionario; 
+    responsavel: Funcionario;
 
-    @IsArray() @IsNotEmpty()
+    @IsArray()
     perguntas: Array<Pergunta>;
 
-    @IsArray() @IsNotEmpty()
-    respostas: Array<String>;
-
-    @IsBoolean() @IsNotEmpty()
-    resolvido: boolean;
-    
 }

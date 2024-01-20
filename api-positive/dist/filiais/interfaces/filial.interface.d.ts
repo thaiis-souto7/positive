@@ -2,7 +2,6 @@ import { Document } from 'mongoose';
 import { Funcionario } from 'src/funcionarios/interfaces/funcionario.interface';
 export interface Filial extends Document {
     readonly cnpj: string;
-    matriz: boolean;
     nome: string;
     cep: string;
     rua: string;
@@ -15,6 +14,5 @@ export interface Filial extends Document {
     responsavel: Funcionario;
     segmento: string;
     numFunc: number;
-    fatAnual: number;
     status: boolean;
 }

@@ -5,4 +5,7 @@ export class AtualizarPerguntaDto{
     @IsString()
     pergunta: string;
 
+    @IsString()
+    tipo: string;
+
 }

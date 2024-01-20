@@ -22,20 +22,20 @@ let PerguntasController = class PerguntasController {
     constructor(pergunta) {
         this.pergunta = pergunta;
     }
-    async createFunc(criarPerguntaDto) {
-        return await this.pergunta.createFunc(criarPerguntaDto);
+    async createPerg(criarPerguntaDto) {
+        return await this.pergunta.createPerg(criarPerguntaDto);
     }
-    async updateFunc(atualizarPerguntaDto, _id) {
-        await this.pergunta.updateFunc(_id, atualizarPerguntaDto);
+    async updatePerg(atualizarPerguntaDto, _id) {
+        await this.pergunta.updatePerg(_id, atualizarPerguntaDto);
     }
-    async getAllFunc() {
-        return await this.pergunta.getAllFunc();
+    async getAllPerg() {
+        return await this.pergunta.getAllPerg();
     }
-    async getOneFunc(_id) {
-        return await this.pergunta.getFuncById(_id);
+    async getOnePerg(_id) {
+        return await this.pergunta.getPergById(_id);
     }
-    async deleteFunc(_id) {
-        await this.pergunta.deleteFunc(_id);
+    async deletePerg(_id) {
+        await this.pergunta.deletePerg(_id);
     }
 };
 __decorate([
@@ -45,7 +45,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [criar_pergunta_dto_1.CriarPerguntaDto]),
     __metadata("design:returntype", Promise)
-], PerguntasController.prototype, "createFunc", null);
+], PerguntasController.prototype, "createPerg", null);
 __decorate([
     (0, common_1.Put)('/:_id'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
@@ -54,27 +54,27 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [atualizar_pergunta_dto_1.AtualizarPerguntaDto, String]),
     __metadata("design:returntype", Promise)
-], PerguntasController.prototype, "updateFunc", null);
+], PerguntasController.prototype, "updatePerg", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], PerguntasController.prototype, "getAllFunc", null);
+], PerguntasController.prototype, "getAllPerg", null);
 __decorate([
     (0, common_1.Get)('/:_id'),
     __param(0, (0, common_1.Param)('_id', pergunta_validation_params_pipe_1.PerguntaValidationParamsPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], PerguntasController.prototype, "getOneFunc", null);
+], PerguntasController.prototype, "getOnePerg", null);
 __decorate([
     (0, common_1.Delete)('/:_id'),
     __param(0, (0, common_1.Param)('_id', pergunta_validation_params_pipe_1.PerguntaValidationParamsPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], PerguntasController.prototype, "deleteFunc", null);
+], PerguntasController.prototype, "deletePerg", null);
 PerguntasController = __decorate([
     (0, common_1.Controller)('api/perguntas'),
     __metadata("design:paramtypes", [perguntas_service_1.PerguntasService])

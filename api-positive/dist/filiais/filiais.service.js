@@ -22,7 +22,7 @@ let FiliaisService = FiliaisService_1 = class FiliaisService {
         this.filialModel = filialModel;
         this.logger = new common_1.Logger(FiliaisService_1.name);
     }
-    async createFunc(criarFilialDto) {
+    async createFilial(criarFilialDto) {
         const { email } = criarFilialDto;
         const filialEncontrado = await this.filialModel.findOne({ email }).exec();
         if (filialEncontrado) {
@@ -31,24 +31,24 @@ let FiliaisService = FiliaisService_1 = class FiliaisService {
         const filialCriado = await new this.filialModel(criarFilialDto);
         return filialCriado.save();
     }
-    async updateFunc(_id, atualizarFilialDto) {
+    async updateFilial(_id, atualizarFilialDto) {
         const filialEncontrado = await this.filialModel.findOne({ _id }).exec();
         if (!filialEncontrado) {
             throw new common_1.NotFoundException('Filial não encontrada');
         }
         await this.filialModel.findOneAndUpdate({ _id }, { $set: atualizarFilialDto }).exec();
     }
-    async getAllFunc() {
+    async getAllFilial() {
         return await this.filialModel.find().exec();
     }
-    async getFuncById(_id) {
+    async getFilialById(_id) {
         const filialEncontrado = await this.filialModel.findOne({ _id }).exec();
         if (!filialEncontrado) {
             throw new Error('Filial não encontrada');
         }
         return filialEncontrado;
     }
-    async deleteFunc(_id) {
+    async deleteFilial(_id) {
         const filialEncontrado = await this.filialModel.findOne({ _id }).exec();
         if (!filialEncontrado) {
             throw new Error('Filial não encontrada');

@@ -12,7 +12,10 @@ export class FuncionariosService {
 private readonly logger = new Logger(FuncionariosService.name);
 constructor (@InjectModel('Funcionario') private readonly funcionarioModel: Model<Funcionario>) {}
 
-
+    async countAllFunc(): Promise<number> {
+        return await this.funcionarioModel.countDocuments();
+    }
+    
     async createFunc(criarFuncionarioDto: CriarFuncionarioDto): Promise<Funcionario> {
         const { email } = criarFuncionarioDto;
         const funcionarioEncontrado = await this.funcionarioModel.findOne({ email }).exec();

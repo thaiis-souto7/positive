@@ -22,20 +22,20 @@ let FiliaisController = class FiliaisController {
     constructor(filial) {
         this.filial = filial;
     }
-    async createFunc(criarFilialDto) {
-        return await this.filial.createFunc(criarFilialDto);
+    async createFilial(criarFilialDto) {
+        return await this.filial.createFilial(criarFilialDto);
     }
-    async updateFunc(atualizarFilialDto, _id) {
-        await this.filial.updateFunc(_id, atualizarFilialDto);
+    async updateFilial(atualizarFilialDto, _id) {
+        await this.filial.updateFilial(_id, atualizarFilialDto);
     }
-    async getAllFunc() {
-        return await this.filial.getAllFunc();
+    async getAllFilial() {
+        return await this.filial.getAllFilial();
     }
-    async getOneFunc(_id) {
-        return await this.filial.getFuncById(_id);
+    async getOneFilial(_id) {
+        return await this.filial.getFilialById(_id);
     }
-    async deleteFunc(_id) {
-        await this.filial.deleteFunc(_id);
+    async deleteFilial(_id) {
+        await this.filial.deleteFilial(_id);
     }
 };
 __decorate([
@@ -45,7 +45,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [criar_filial_dto_1.CriarFilialDto]),
     __metadata("design:returntype", Promise)
-], FiliaisController.prototype, "createFunc", null);
+], FiliaisController.prototype, "createFilial", null);
 __decorate([
     (0, common_1.Put)('/:_id'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
@@ -54,27 +54,27 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [atualizar_filial_dto_1.AtualizarFilialDto, String]),
     __metadata("design:returntype", Promise)
-], FiliaisController.prototype, "updateFunc", null);
+], FiliaisController.prototype, "updateFilial", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], FiliaisController.prototype, "getAllFunc", null);
+], FiliaisController.prototype, "getAllFilial", null);
 __decorate([
     (0, common_1.Get)('/:_id'),
     __param(0, (0, common_1.Param)('_id', filial_validation_params_pipe_1.FilialValidationParamsPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], FiliaisController.prototype, "getOneFunc", null);
+], FiliaisController.prototype, "getOneFilial", null);
 __decorate([
     (0, common_1.Delete)('/:_id'),
     __param(0, (0, common_1.Param)('_id', filial_validation_params_pipe_1.FilialValidationParamsPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], FiliaisController.prototype, "deleteFunc", null);
+], FiliaisController.prototype, "deleteFilial", null);
 FiliaisController = __decorate([
     (0, common_1.Controller)('api/filiais'),
     __metadata("design:paramtypes", [filiais_service_1.FiliaisService])

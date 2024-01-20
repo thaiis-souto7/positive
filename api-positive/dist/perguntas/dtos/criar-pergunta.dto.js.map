@@ -1,1 +1,1 @@
-{"version":3,"file":"criar-pergunta.dto.js","sourceRoot":"","sources":["../../../src/perguntas/dtos/criar-pergunta.dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,qDAAkF;AAElF,MAAa,gBAAgB;CAK5B;AAHG;IAAC,IAAA,4BAAU,GAAE;IAAE,IAAA,0BAAQ,GAAE;;kDACC;AAH9B,4CAKC"}
+{"version":3,"file":"criar-pergunta.dto.js","sourceRoot":"","sources":["../../../src/perguntas/dtos/criar-pergunta.dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,qDAAkF;AAElF,MAAa,gBAAgB;CAQ5B;AANG;IAAC,IAAA,4BAAU,GAAE;IAAE,IAAA,0BAAQ,GAAE;;kDACC;AAE1B;IAAC,IAAA,4BAAU,GAAE;IAAE,IAAA,0BAAQ,GAAE;;8CACZ;AANjB,4CAQC"}

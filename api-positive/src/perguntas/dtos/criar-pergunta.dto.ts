@@ -4,5 +4,8 @@ export class CriarPerguntaDto{
     
     @IsNotEmpty() @IsString()
     readonly pergunta: string;
+
+    @IsNotEmpty() @IsString()
+    tipo: string;
     
 }

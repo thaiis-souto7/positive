@@ -5,6 +5,7 @@ import { Funcionario } from './interfaces/funcionario.interface';
 export declare class FuncionariosController {
     private readonly funcionario;
     constructor(funcionario: FuncionariosService);
+    getCountFunc(): Promise<number>;
     createFunc(criarFuncionarioDto: CriarFuncionarioDto): Promise<Funcionario>;
     updateFunc(atualizarFuncionarioDto: AtualizarFuncionarioDto, _id: string): Promise<void>;
     getAllFunc(): Promise<Funcionario[]>;

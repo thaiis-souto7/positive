@@ -12,13 +12,24 @@ export class FormulariosService {
 private readonly logger = new Logger(FormulariosService.name);
 constructor (@InjectModel('Formulario') private readonly formularioModel: Model<Formulario>) {}
 
-    async createFunc(criarFormularioDto: CriarFormularioDto): Promise<Formulario> {
-        
+    async countAllForm(): Promise<number> {
+        return await this.formularioModel.countDocuments();
+    }
+
+    async findForms(): Promise<Formulario[]> {
+        return this.formularioModel.find({ descricao: /bem[- ]estar/i }).exec();
+    }
+
+    async findFormSite(): Promise<Formulario[]> {
+        return this.formularioModel.find({ descricao: /site/i }).exec();
+    }
+
+    async createForm(criarFormularioDto: CriarFormularioDto): Promise<Formulario> {
         const formularioCriado = await new this.formularioModel(criarFormularioDto);
         return formularioCriado.save();
     }
 
-    async updateFunc(_id: string, atualizarFormularioDto: AtualizarFormularioDto): Promise<void> {
+    async updateForm(_id: string, atualizarFormularioDto: AtualizarFormularioDto): Promise<void> {
 
         const formularioEncontrado = await this.formularioModel.findOne({ _id }).exec();
         
@@ -28,11 +39,11 @@ constructor (@InjectModel('Formulario') private readonly formularioModel: Model<
         await this.formularioModel.findOneAndUpdate({ _id }, { $set: atualizarFormularioDto }).exec();
     }
 
-    async getAllFunc(): Promise<Formulario[]> {
+    async getAllForm(): Promise<Formulario[]> {
         return await this.formularioModel.find().exec();
     }
     
-    async getFuncById(_id: string): Promise<Formulario> {
+    async getFormById(_id: string): Promise<Formulario> {
         const formularioEncontrado = await this.formularioModel.findOne({ _id }).exec();
         if(!formularioEncontrado){
             throw new Error('Formulário não encontrado');
@@ -40,7 +51,7 @@ constructor (@InjectModel('Formulario') private readonly formularioModel: Model<
         return formularioEncontrado;
     }
 
-    async deleteFunc(_id: string): Promise<any> {
+    async deleteForm(_id: string): Promise<any> {
 
         const formularioEncontrado = await this.formularioModel.findOne({ _id }).exec();
         if(!formularioEncontrado){

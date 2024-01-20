@@ -22,6 +22,9 @@ let FuncionariosController = class FuncionariosController {
     constructor(funcionario) {
         this.funcionario = funcionario;
     }
+    async getCountFunc() {
+        return await this.funcionario.countAllFunc();
+    }
     async createFunc(criarFuncionarioDto) {
         return await this.funcionario.createFunc(criarFuncionarioDto);
     }
@@ -38,6 +41,12 @@ let FuncionariosController = class FuncionariosController {
         await this.funcionario.deleteFunc(_id);
     }
 };
+__decorate([
+    (0, common_1.Get)('/count'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], FuncionariosController.prototype, "getCountFunc", null);
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
