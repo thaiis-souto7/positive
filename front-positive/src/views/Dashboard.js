@@ -129,7 +129,7 @@ function Dashboard() {
     <>
       <Container fluid>
         <Row>
-          <Col lg="4" sm="6">
+          <Col lg="3" sm="6">
             <Card className="card-stats">
               <Card.Body>
                 <Row>
@@ -153,7 +153,7 @@ function Dashboard() {
               </Card.Footer> */}
             </Card>
           </Col>
-          <Col lg="4" sm="6">
+          <Col lg="3" sm="6">
             <Card className="card-stats">
               <Card.Body>
                 <Row>
@@ -179,7 +179,7 @@ function Dashboard() {
               </Card.Footer> */}
             </Card>
           </Col>
-          <Col lg="4" sm="6">
+          <Col lg="3" sm="6">
             <Card className="card-stats">
               <Card.Body>
                 <Row>
@@ -205,7 +205,7 @@ function Dashboard() {
               </Card.Footer> */}
             </Card>
           </Col>
-          <Col lg="4" sm="6">
+          <Col lg="3" sm="6">
             <Card className="card-stats">
               <Card.Body>
                 <Row>
@@ -231,7 +231,7 @@ function Dashboard() {
               </Card.Footer> */}
             </Card>
           </Col>
-          <Col lg="4" sm="6">
+          {/* <Col lg="4" sm="6">
             <Card className="card-stats">
               <Card.Body>
                 <Row>
@@ -248,15 +248,9 @@ function Dashboard() {
                   </Col>
                 </Row>
               </Card.Body>
-              {/* <Card.Footer>
-                <hr></hr>
-                <div className="stats">
-                  <i className="fas fa-redo mr-1"></i>
-                  Update now
-                </div>
-              </Card.Footer> */}
+              
             </Card>
-          </Col>
+          </Col> */}
         </Row>
         <Row>
           <Col md="12">
@@ -272,7 +266,7 @@ function Dashboard() {
                       labels: chartData.labels,
                       series: [[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
                                 chartData.series[0],
-                                chartData.series[1]
+                                // chartData.series[1]
                               ]
                     }}
                     //   {{labels: [
@@ -335,8 +329,8 @@ function Dashboard() {
                   <i className="fas fa-circle text-danger"></i>
                   Bem-Estar  
                   <br></br>
-                  <i className="fas fa-circle text-warning"></i>
-                  Satisfação do Site
+                  {/* <i className="fas fa-circle text-warning"></i>
+                  Satisfação do Site */}
                 </div>
               </Card.Footer>
             </Card>
