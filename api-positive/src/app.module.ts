@@ -9,7 +9,7 @@ import { RespostasModule } from './respostas/respostas.module';
 
 @Module({
   imports: 
-    [ MongooseModule.forRoot('mongodb+srv://thaiis_souto:t09031999@positive.h5yx5yp.mongodb.net/positive?retryWrites=true&w=majority', 
+    [ MongooseModule.forRoot('mongodb+srv://thaiis_souto:<senhaPrivada>@positive.h5yx5yp.mongodb.net/positive?retryWrites=true&w=majority', 
       { useNewUrlParser: true, useUnifiedTopology: true }), 
       FuncionariosModule, FiliaisModule,  PerguntasModule, FormulariosModule, RespostasModule, LoginModule
     ],
